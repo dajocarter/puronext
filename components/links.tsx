@@ -1,7 +1,7 @@
-import { Children, cloneElement, ReactElement, ReactNode } from 'react'
+import React, { useState, useEffect, ReactElement, Children } from 'react'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
 import styled from 'styled-components'
+import Link, { LinkProps } from 'next/link'
 
 export const StyledButtonLink = styled.a<{
   primary?: boolean
@@ -43,33 +43,56 @@ export const StyledButtonLink = styled.a<{
   }
 `
 
+type ActiveLinkProps = LinkProps & {
+  children: ReactElement
+  activeClassName: string
+}
 export const ActiveLink = ({
   children,
   activeClassName = 'active',
   ...props
-}: {
-  children: ReactNode
-  activeClassName: string
-  href: string
-  passHref: boolean
-  as?: string
-}) => {
-  const { asPath } = useRouter()
-  const child = Children.only(children) as ReactElement
-  if (!child) return null
-  const childClassName: string = child.props.className || ''
+}: ActiveLinkProps) => {
+  const { asPath, isReady } = useRouter()
 
-  // pages/index.js will be matched via props.href
-  // pages/about.js will be matched via props.href
-  // pages/[slug].js will be matched via props.as
-  const className =
-    asPath === props.href || asPath === props.as
-      ? `${childClassName} ${activeClassName}`.trim()
-      : childClassName
+  const child = Children.only(children)
+  const childClassName = child.props.className || ''
+  const [className, setClassName] = useState(childClassName)
+
+  useEffect(() => {
+    // Check if the router fields are updated client-side
+    if (isReady) {
+      // Dynamic routes will be matched via props.as
+      // Static routes will be matched via props.href
+      const linkPathname = new URL(
+        (props.as || props.href) as string,
+        location.href
+      ).pathname
+
+      // Using URL().pathname to get rid of query and hash
+      const activePathname = new URL(asPath, location.href).pathname
+
+      const newClassName =
+        activePathname === linkPathname
+          ? `${childClassName} ${activeClassName}`.trim()
+          : childClassName
+
+      if (newClassName !== className) {
+        setClassName(newClassName)
+      }
+    }
+  }, [
+    asPath,
+    isReady,
+    props.as,
+    props.href,
+    activeClassName,
+    childClassName,
+    className
+  ])
 
   return (
     <Link {...props}>
-      {cloneElement(child, {
+      {React.cloneElement(child, {
         className: className || null
       })}
     </Link>
