@@ -130,14 +130,14 @@ export default function Header({ logo, siteTitle, navs }: HeaderProps) {
           <div
             className={
               menuIsOpen
-                ? `${styles.overlay} ${styles.open}`
+                ? `${styles.overlay} ${styles.overlayOpen}`
                 : `${styles.overlay} 'd-xl-none'`
             }
           >
             <div
               className={
                 menuIsOpen
-                  ? `${styles.menuToggle} ${styles.open}`
+                  ? `${styles.menuToggle} ${styles.menuToggleOpen}`
                   : styles.menuToggle
               }
               onClick={() => setMenu((menuIsOpen) => !menuIsOpen)}
@@ -147,8 +147,8 @@ export default function Header({ logo, siteTitle, navs }: HeaderProps) {
             <nav
               className={
                 menuIsOpen
-                  ? `${styles.nav} ${styles.overlayIsOpen}`
-                  : styles.nav
+                  ? `${styles.nav} ${styles.withOverlay} ${styles.withOverlayOpen}`
+                  : `${styles.nav} ${styles.withOverlay}`
               }
               role={`navigation`}
               aria-label={mobileMenuName}
@@ -167,7 +167,9 @@ export default function Header({ logo, siteTitle, navs }: HeaderProps) {
                     >
                       <a
                         className={
-                          item.object_slug === 'rep-login' ? `alt` : ``
+                          item.object_slug === 'rep-login'
+                            ? `${styles.navLink} ${styles.alt}`
+                            : styles.navLink
                         }
                       >
                         {item.title}
