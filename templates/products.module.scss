@@ -1,0 +1,64 @@
+@import '../styles/variables.module.scss';
+
+.main {
+  padding: 45px 15px;
+}
+
+.tabs {
+  &.nav {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(1, 1fr);
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 991px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .nav-link {
+    padding: 0;
+  }
+}
+
+.pane {
+  display: grid;
+  grid-gap: 1rem;
+  align-items: center;
+  grid-template-columns: 1fr;
+  position: relative;
+
+  @media (max-width: 990px) {
+    margin-top: 2rem;
+  }
+
+  @media (min-width: 991px) {
+    grid-template-columns: minmax(600px, 1fr) 1fr;
+  }
+}
+
+.icon {
+  color: $secondary-color;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.closeIcon {
+  position: absolute;
+  top: 0;
+  right: 1rem;
+}
+
+.arrows {
+  position: absolute;
+  bottom: 0;
+  right: 1rem;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+}

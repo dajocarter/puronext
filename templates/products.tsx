@@ -5,7 +5,7 @@ import {
   HeroUnit
 } from '../components/hero-unit'
 import Layout from '../components/layout'
-import styled, { css } from 'styled-components'
+import styles from './products.module.scss'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -16,7 +16,7 @@ import TabPane from 'react-bootstrap/TabPane'
 import { PageProps } from '../pages/[slug]'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
-import { StyledButtonLink } from '../components/links'
+import links from '../styles/links.module.scss'
 import { FaArrowLeft, FaArrowRight, FaTimes } from 'react-icons/fa'
 import ProductNav from '../components/product-nav'
 import {
@@ -87,7 +87,7 @@ export default function ProductsPageTemplate(props: ProductsPageProps) {
           buttons={props.page.acf.buttons}
         />
       </HeroUnit>
-      <Main>
+      <Container className={styles.main}>
         <Row>
           <Col xs={12}>
             <ProductNav products={props.products} />
@@ -101,7 +101,7 @@ export default function ProductsPageTemplate(props: ProductsPageProps) {
           >
             <Row ref={tabsRef}>
               <Col xs={12}>
-                <Tabs>
+                <Nav className={styles.tabs}>
                   {props.products.map((product, index) => {
                     const { imgAlt, imgSrc, imgHeight, imgWidth } =
                       getImageData(product._embedded['wp:featuredmedia'][0])
@@ -128,7 +128,7 @@ export default function ProductsPageTemplate(props: ProductsPageProps) {
                       />
                     </Nav.Link>
                   </Nav.Item>
-                </Tabs>
+                </Nav>
               </Col>
             </Row>
             <Row ref={panesRef}>
@@ -160,7 +160,7 @@ export default function ProductsPageTemplate(props: ProductsPageProps) {
             </Row>
           </TabContainer>
         )}
-      </Main>
+      </Container>
     </Layout>
   )
 }
@@ -189,7 +189,7 @@ function SelectablePane({
   )
   return (
     <TabPane eventKey={eventKey}>
-      <Pane>
+      <div className={styles.pane}>
         <Image alt={imgAlt} src={imgSrc} height={imgHeight} width={imgWidth} />
         <div>
           <h2>{node.title.rendered}</h2>
@@ -207,86 +207,21 @@ function SelectablePane({
               }}
             />
           )}
-          <StyledButtonLink href={node.slug}>Learn More</StyledButtonLink>
-          <CloseIcon onClick={closePane} />
-          <Arrows>
-            {prev && <LeftArrow onClick={prevPane} />}
-            {next && <RightArrow onClick={nextPane} />}
-          </Arrows>
+          <a className={links.buttonLink} href={node.slug}>
+            Learn More
+          </a>
+          <FaTimes
+            className={`${styles.icon} ${styles.closeIcon}`}
+            onClick={closePane}
+          />
+          <div className={styles.arrows}>
+            {prev && <FaArrowLeft className={styles.icon} onClick={prevPane} />}
+            {next && (
+              <FaArrowRight className={styles.icon} onClick={nextPane} />
+            )}
+          </div>
         </div>
-      </Pane>
+      </div>
     </TabPane>
   )
 }
-
-const Main = styled(Container)`
-  padding: 45px 15px;
-`
-
-const Tabs = styled(Nav)`
-  &.nav {
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-    display: grid;
-    grid-gap: 1rem;
-    grid-template-columns: repeat(1, 1fr);
-
-    @media (min-width: 768px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    @media (min-width: 991px) {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  .nav-link {
-    padding: 0;
-  }
-`
-
-const Pane = styled.div`
-  display: grid;
-  grid-gap: 1rem;
-  align-items: center;
-  grid-template-columns: 1fr;
-  position: relative;
-
-  @media (max-width: 990px) {
-    margin-top: 2rem;
-  }
-
-  @media (min-width: 991px) {
-    grid-template-columns: minmax(600px, 1fr) 1fr;
-  }
-`
-
-const Icon = css`
-  color: ${({ theme }) => theme.secondary};
-  font-size: 1.25rem;
-  cursor: pointer;
-`
-
-const CloseIcon = styled(FaTimes)`
-  position: absolute;
-  top: 0;
-  right: 1rem;
-  ${Icon};
-`
-
-const Arrows = styled.div`
-  position: absolute;
-  bottom: 0;
-  right: 1rem;
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: 1fr 1fr;
-`
-
-const LeftArrow = styled(FaArrowLeft)`
-  ${Icon};
-`
-
-const RightArrow = styled(FaArrowRight)`
-  ${Icon};
-`
