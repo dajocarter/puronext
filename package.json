@@ -15,15 +15,12 @@
     "react-bootstrap": "2.5.0",
     "react-dom": "18.2.0",
     "react-icons": "4.4.0",
-    "styled-components": "5.3.5",
-    "styled-normalize": "8.0.7",
     "wordpress-api-client": "0.4.8"
   },
   "devDependencies": {
     "@types/node": "18.7.13",
     "@types/react": "18.0.17",
     "@types/react-dom": "18.0.6",
-    "@types/styled-components": "5.1.26",
     "eslint": "8.22.0",
     "eslint-config-next": "12.2.5",
     "eslint-config-prettier": "8.5.0",

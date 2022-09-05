@@ -55,7 +55,7 @@ export function HeroContent({ content, buttons }: HeroContentProps) {
           dangerouslySetInnerHTML={{ __html: content }}
         />
       )}
-      {buttons.length > 0 && (
+      {buttons && buttons.length > 0 && (
         <div
           className={
             buttons.length > 1
