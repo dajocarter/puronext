@@ -5,7 +5,7 @@ import {
   HeroUnit
 } from '../components/hero-unit'
 import Layout from '../components/layout'
-import styled from 'styled-components'
+import styles from './gallery.module.scss'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -41,7 +41,7 @@ export default function GalleryPageTemplate(props: GalleryPageProps) {
         />
       </HeroUnit>
       {props.page.acf.gallery && (
-        <Main>
+        <Container className={styles.main}>
           <Row>
             <Col xs={12}>
               <Carousel>
@@ -67,12 +67,8 @@ export default function GalleryPageTemplate(props: GalleryPageProps) {
               </Carousel>
             </Col>
           </Row>
-        </Main>
+        </Container>
       )}
     </Layout>
   )
 }
-
-const Main = styled(Container)`
-  padding: 45px 15px;
-`
