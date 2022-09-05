@@ -1,0 +1,55 @@
+@import '../styles/variables.module.scss';
+
+.main {
+  padding: 45px 15px;
+  background-color: black;
+}
+
+.content {
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 1.45rem 1.0875rem;
+}
+
+.library {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 991px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.libraryGroup {
+  h2,
+  h3 {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  h2 {
+    color: white;
+    text-transform: uppercase;
+  }
+
+  h3 {
+    color: $primary-color;
+  }
+
+  ul,
+  a {
+    color: $secondary-color;
+    text-decoration: none;
+  }
+
+  a {
+    &:hover,
+    &:focus {
+      color: $primary-color;
+    }
+  }
+}

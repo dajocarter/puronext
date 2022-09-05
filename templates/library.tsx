@@ -5,7 +5,7 @@ import {
   HeroUnit
 } from '../components/hero-unit'
 import Layout from '../components/layout'
-import styled from 'styled-components'
+import styles from './library.module.scss'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -50,19 +50,20 @@ export default function LibraryTemplate(props: LibraryTemplateProps) {
         />
       </HeroUnit>
       {props.page.content.rendered && (
-        <Content
+        <div
+          className={styles.content}
           dangerouslySetInnerHTML={{ __html: props.page.content.rendered }}
         />
       )}
-      <Main>
+      <div className={styles.main}>
         <Container>
           <Row>
             <Col xs={12}>
-              <Library>
+              <div className={styles.library}>
                 {props.page.acf &&
                   props.page.acf.file_groups &&
                   props.page.acf.file_groups.map((groups, i) => (
-                    <LibraryGroup key={i}>
+                    <div className={styles.libraryGroup} key={i}>
                       <h2>{groups.group_name}</h2>
                       {groups.file_group.map((group, j) => (
                         <Fragment key={j}>
@@ -88,64 +89,13 @@ export default function LibraryTemplate(props: LibraryTemplateProps) {
                           )}
                         </Fragment>
                       ))}
-                    </LibraryGroup>
+                    </div>
                   ))}
-              </Library>
+              </div>
             </Col>
           </Row>
         </Container>
-      </Main>
+      </div>
     </Layout>
   )
 }
-
-const Main = styled.div`
-  padding: 45px 15px;
-  background-color: black;
-`
-
-const Content = styled.div`
-  margin: 0 auto;
-  max-width: 960px;
-  padding: 1.45rem 1.0875rem;
-`
-
-const Library = styled.div`
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-
-  @media (min-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (min-width: 991px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-`
-
-const LibraryGroup = styled.div`
-  h2,
-  h3 {
-    font-size: 18px;
-    font-weight: bold;
-  }
-  h2 {
-    color: white;
-    text-transform: uppercase;
-  }
-  h3 {
-    color: ${({ theme }) => theme.primary};
-  }
-  ul,
-  a {
-    color: ${({ theme }) => theme.secondary};
-    text-decoration: none;
-  }
-
-  a {
-    &:hover,
-    &:focus {
-      color: ${({ theme }) => theme.primary};
-    }
-  }
-`
