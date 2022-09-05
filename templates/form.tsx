@@ -5,7 +5,7 @@ import {
   HeroUnit
 } from '../components/hero-unit'
 import Layout from '../components/layout'
-import styled from 'styled-components'
+import styles from './form.module.scss'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -40,10 +40,10 @@ export default function FormPage(props: FormPageProps) {
           buttons={props.page.acf.buttons}
         />
       </HeroUnit>
-      <Main>
+      <Container className={styles.main}>
         <Row>
           <Col xs={12}>
-            <Content>
+            <div className={styles.content}>
               {props.page.acf.form ? (
                 props.page.acf.form === 'newsletter' ? (
                   <NewsletterForm />
@@ -53,30 +53,10 @@ export default function FormPage(props: FormPageProps) {
               ) : (
                 <ContactForm />
               )}
-            </Content>
+            </div>
           </Col>
         </Row>
-      </Main>
+      </Container>
     </Layout>
   )
 }
-
-const Main = styled(Container)`
-  padding: 45px 15px;
-`
-
-const Content = styled.div`
-  color: ${({ theme }) => theme.body};
-  margin: 0 auto;
-  max-width: 960px;
-  padding: 45px 15px;
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    color: ${({ theme }) => theme.primary};
-  }
-`
