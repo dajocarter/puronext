@@ -1,0 +1,24 @@
+.row {
+  background-color: rgba(127, 127, 127, 0.1);
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 480px;
+  padding: 1.45rem 1.0875rem;
+  text-align: center;
+}
+
+.bgImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+  height: 420px;
+}
+
+.content {
+  font-size: 24px;
+  letter-spacing: 1px;
+}

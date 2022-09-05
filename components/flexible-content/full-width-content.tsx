@@ -1,17 +1,12 @@
 import Image from 'next/image'
-import styled from 'styled-components'
-import { StyledButtonLink } from '../links'
+import styles from './full-width-content.module.scss'
+import links from '../../styles/links.module.scss'
+import { getImageData } from '../../data'
+import { WordPressImage } from '../../data/types'
 
 export interface FullWidthContentProps {
   acf_fc_layout: 'full_width_content'
-  background_image: {
-    alt: string
-    sizes: {
-      medium_large: string
-      'medium_large-height': number
-      'medium_large-width': number
-    }
-  }
+  background_image: WordPressImage
   content: string
   link: {
     url: string
@@ -21,53 +16,35 @@ export interface FullWidthContentProps {
 }
 
 export default function FullWidthContent(props: FullWidthContentProps) {
+  const { imgAlt, imgSrc, imgHeight, imgWidth } = getImageData(
+    props.background_image
+  )
   return (
-    <Row>
-      <Container>
+    <div className={styles.row}>
+      <div className={styles.container}>
         {props.background_image && (
-          <BGimg
-            alt={props.background_image.alt}
-            src={props.background_image.sizes.medium_large}
-            height={props.background_image.sizes['medium_large-height']}
-            width={props.background_image.sizes['medium_large-width']}
+          <Image
+            className={styles.bgImg}
+            alt={imgAlt}
+            src={imgSrc}
+            height={imgHeight}
+            width={imgWidth}
           />
         )}
-        <Content dangerouslySetInnerHTML={{ __html: props.content }} />
+        <div
+          className={styles.content}
+          dangerouslySetInnerHTML={{ __html: props.content }}
+        />
         {props.link && (
-          <StyledButtonLink
-            secondary
+          <a
+            className={`${links.buttonLink} ${links.secondary} ${styles.buttonLink}`}
             href={`/${props.link.url}/`}
             target={props.link.target}
           >
             {props.link.title}
-          </StyledButtonLink>
+          </a>
         )}
-      </Container>
-    </Row>
+      </div>
+    </div>
   )
 }
-
-const Row = styled.div`
-  background-color: rgba(127, 127, 127, 0.1);
-`
-
-const Container = styled.div`
-  margin: 0 auto;
-  max-width: 480px;
-  padding: 1.45rem 1.0875rem;
-  text-align: center;
-`
-
-const BGimg = styled(Image)`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: -1;
-  height: 420px;
-`
-
-const Content = styled.div`
-  font-size: 24px;
-  letter-spacing: 1px;
-`
