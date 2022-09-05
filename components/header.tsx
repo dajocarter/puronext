@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { FaBars, FaTimes } from 'react-icons/fa'
-import styled from 'styled-components'
+import styles from './header.module.scss'
 import { WordPressMenu } from '../data/types'
 
 export interface HeaderProps {
@@ -37,11 +37,11 @@ export default function Header({ logo, siteTitle, navs }: HeaderProps) {
   const mobileMenuItems = navs.mobile.items
 
   return (
-    <Wrapper>
+    <header className={styles.wrapper}>
       <Container>
         <Row>
           <Col xs={9} xl={3}>
-            <NavBrand>
+            <div className={styles.navBrand}>
               <Link href='/'>
                 <a>
                   <Image
@@ -53,76 +53,109 @@ export default function Header({ logo, siteTitle, navs }: HeaderProps) {
                   />
                 </a>
               </Link>
-            </NavBrand>
+            </div>
           </Col>
           <Col className='d-none d-xl-block' xl={9}>
-            <Nav role='navigation' aria-label={desktopMenuName}>
-              <NavMenu>
+            <nav
+              className={styles.nav}
+              role='navigation'
+              aria-label={desktopMenuName}
+            >
+              <ul className={styles.navMenu}>
                 {desktopMenuItems.map((item) => (
-                  <NavItem key={item.object_id}>
+                  <li className={styles.navItem} key={item.object_id}>
                     <ActiveLink
                       href={
                         item.object_slug === 'home'
-                          ? `/`
+                          ? '/'
                           : `/${item.object_slug}/`
                       }
                       passHref
                       activeClassName='active'
                     >
-                      <NavLink
+                      <a
                         className={
-                          item.object_slug === 'rep-login' ? `alt` : ``
+                          item.object_slug === 'rep-login'
+                            ? `${styles.navLink} ${styles.alt}`
+                            : styles.navLink
                         }
                       >
                         {item.title}
-                      </NavLink>
+                      </a>
                     </ActiveLink>
                     {item.children && (
-                      <ChildMenu>
+                      <ul
+                        className={`${styles.navMenu} ${styles.subMenu} ${styles.childMenu}`}
+                      >
                         {item.children.map((child) => (
-                          <NavItem key={child.object_id}>
+                          <li className={styles.navItem} key={child.object_id}>
                             <ActiveLink
                               href={`/${child.object_slug}/`}
                               passHref
                               activeClassName='active'
                             >
-                              <NavLink>{child.title}</NavLink>
+                              <a className={styles.navLink}>{child.title}</a>
                             </ActiveLink>
                             {child.children && (
-                              <GrandChildMenu>
+                              <ul
+                                className={`${styles.navMenu} ${styles.subMenu} ${styles.grandChildMenu}`}
+                              >
                                 {child.children.map((grandchild) => (
-                                  <NavItem key={grandchild.object_id}>
+                                  <li
+                                    className={styles.navItem}
+                                    key={grandchild.object_id}
+                                  >
                                     <ActiveLink
                                       href={`/${grandchild.object_slug}/`}
                                       passHref
                                       activeClassName='active'
                                     >
-                                      <NavLink>{grandchild.title}</NavLink>
+                                      <a className={styles.navLink}>
+                                        {grandchild.title}
+                                      </a>
                                     </ActiveLink>
-                                  </NavItem>
+                                  </li>
                                 ))}
-                              </GrandChildMenu>
+                              </ul>
                             )}
-                          </NavItem>
+                          </li>
                         ))}
-                      </ChildMenu>
+                      </ul>
                     )}
-                  </NavItem>
+                  </li>
                 ))}
-              </NavMenu>
-            </Nav>
+              </ul>
+            </nav>
           </Col>
-          <Overlay className='d-xl-none' menuIsOpen={menuIsOpen}>
-            <MenuToggle
-              menuIsOpen={menuIsOpen}
+          <div
+            className={
+              menuIsOpen
+                ? `${styles.overlay} ${styles.open}`
+                : `${styles.overlay} 'd-xl-none'`
+            }
+          >
+            <div
+              className={
+                menuIsOpen
+                  ? `${styles.menuToggle} ${styles.open}`
+                  : styles.menuToggle
+              }
               onClick={() => setMenu((menuIsOpen) => !menuIsOpen)}
             >
               {menuIsOpen ? <FaTimes /> : <FaBars />}
-            </MenuToggle>
-            <Nav role={`navigation`} aria-label={mobileMenuName}>
-              <NavMenu>
+            </div>
+            <nav
+              className={
+                menuIsOpen
+                  ? `${styles.nav} ${styles.overlayIsOpen}`
+                  : styles.nav
+              }
+              role={`navigation`}
+              aria-label={mobileMenuName}
+            >
+              <ul className={styles.navMenu}>
                 {mobileMenuItems.map((item) => (
-                  <NavItem key={item.object_id}>
+                  <li className={styles.navItem} key={item.object_id}>
                     <ActiveLink
                       href={
                         item.object_slug === 'home'
@@ -132,194 +165,21 @@ export default function Header({ logo, siteTitle, navs }: HeaderProps) {
                       passHref
                       activeClassName='active'
                     >
-                      <NavLink
+                      <a
                         className={
                           item.object_slug === 'rep-login' ? `alt` : ``
                         }
                       >
                         {item.title}
-                      </NavLink>
+                      </a>
                     </ActiveLink>
-                  </NavItem>
+                  </li>
                 ))}
-              </NavMenu>
-            </Nav>
-          </Overlay>
+              </ul>
+            </nav>
+          </div>
         </Row>
       </Container>
-    </Wrapper>
+    </header>
   )
 }
-
-const Wrapper = styled.header`
-  background: black;
-
-  .container {
-    position: relative;
-  }
-`
-
-const Nav = styled.nav`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin: 0 auto;
-  max-width: 960px;
-`
-
-const NavBrand = styled.div`
-  margin: 10px 0;
-
-  a {
-    display: block;
-  }
-`
-
-const NavMenu = styled.ul`
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  align-items: center;
-`
-
-const SubMenu = styled(NavMenu)`
-  display: none;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: flex-start;
-  position: absolute;
-  border-top: ${({ theme }) => `4px solid ${theme.primary}`};
-  width: max-content;
-  min-width: 120px;
-  z-index: 20;
-
-  li {
-    padding-right: 0.5rem;
-    width: 100%;
-
-    &:not(:last-child) {
-      margin-right: 0;
-    }
-  }
-
-  a {
-    padding: 0.45rem 0 0.45rem 0.45rem;
-  }
-`
-
-const ChildMenu = styled(SubMenu)`
-  background-color: white;
-  top: 100%;
-  left: 0;
-  padding-top: 1rem;
-
-  a {
-    color: ${({ theme }) => theme.primary};
-  }
-`
-
-const GrandChildMenu = styled(SubMenu)`
-  background-color: ${({ theme }) => theme.primary};
-  border-top: 0;
-  top: 0;
-  left: 100%;
-
-  li {
-    &:hover {
-      background-color: #ccc;
-    }
-  }
-
-  a {
-    color: white;
-
-    &:hover {
-      color: white;
-    }
-  }
-`
-
-const NavItem = styled.li`
-  flex: 0 0 auto;
-  position: relative;
-
-  &:not(:last-child) {
-    margin-right: 10px;
-  }
-
-  &:hover {
-    > ul {
-      display: flex;
-    }
-  }
-`
-
-const NavLink = styled.a`
-  color: white;
-  display: block;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.8rem;
-  font-style: italic;
-  text-decoration: none;
-  text-transform: uppercase;
-  padding: 24.5px 0;
-
-  &.alt {
-    color: ${({ theme }) => theme.secondary};
-  }
-
-  &:hover,
-  &:focus,
-  &.active {
-    color: ${({ theme }) => theme.primary};
-  }
-`
-
-const MenuToggle = styled.div<{ menuIsOpen: boolean }>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  > svg {
-    color: ${({ menuIsOpen, theme }) =>
-      menuIsOpen ? theme.secondary : theme.primary};
-    font-size: 2rem;
-    cursor: pointer;
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-  }
-`
-
-const Overlay = styled.div<{ menuIsOpen: boolean }>`
-  position: ${({ menuIsOpen }) => (menuIsOpen ? `fixed` : `absolute`)};
-  top: 0;
-  right: 0;
-  width: ${({ menuIsOpen }) => (menuIsOpen ? `100vw` : `0px`)};
-  height: ${({ menuIsOpen }) => (menuIsOpen ? `100vh` : `0px`)};
-  background-color: rgba(0, 0, 0, 0.9);
-  z-index: 10;
-  transition: all 0.15s ease-in-out;
-
-  ${Nav} {
-    display: ${({ menuIsOpen }) => (menuIsOpen ? `flex` : `none`)};
-    justify-content: flex-start;
-    padding: 1rem 3rem;
-    height: 100%;
-
-    ul {
-      height: 100%;
-      flex-flow: column nowrap;
-      align-items: flex-start;
-
-      a {
-        font-size: 2rem;
-        font-style: normal;
-        padding: 0;
-      }
-    }
-  }
-`
