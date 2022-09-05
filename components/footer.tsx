@@ -2,9 +2,9 @@ import Link from 'next/link'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import styled from 'styled-components'
 
-import { StyledButtonLink } from './links'
+import styles from './footer.module.scss'
+import links from '../styles/links.module.scss'
 import { WordPressMenu } from '../data/types'
 
 export interface FooterProps {
@@ -21,250 +21,92 @@ export default function Footer({ navs }: FooterProps) {
   const exploreMenuItems = navs.explore.items
 
   return (
-    <FooterWrapper>
-      <CallToAction>
+    <footer className={styles.footerWrapper}>
+      <div className={styles.callToAction}>
         <Container>
           <Row>
             <Col xs={12} md={6} lg={5}>
-              <Headline>Ready to get started?</Headline>
+              <h2 className={styles.headline}>Ready to get started?</h2>
             </Col>
             <Col xs={12} md={6} lg={7}>
-              <Action>
+              <p className={styles.action}>
                 Call us at{' '}
-                <PhoneNumber
+                <a
+                  className={styles.phoneNumber}
                   href='tel:805-579-0216'
                   title='Dial (805) 579-0216'
                 >
                   (805) 579-0216
-                </PhoneNumber>{' '}
+                </a>{' '}
                 or{' '}
                 <Link href='/contact' passHref>
-                  <CTAlink>Contact Us</CTAlink>
+                  <a className={`${links.buttonLink} ${styles.ctaLink}`}>
+                    Contact Us
+                  </a>
                 </Link>
-              </Action>
+              </p>
             </Col>
           </Row>
         </Container>
-      </CallToAction>
+      </div>
       <Container>
-        <MenusRow>
-          <Column xs={12} sm={4} md={3}>
-            <ColumnTitle>{pagesMenuName}</ColumnTitle>
-            <Menu>
+        <Row className={styles.menuRow}>
+          <Col className={styles.column} xs={12} sm={4} md={3}>
+            <h4 className={styles.columnTitle}>{pagesMenuName}</h4>
+            <ul className={styles.menu}>
               {pagesMenuItems.map((item, index) => (
-                <MenuItem key={index}>
+                <li className={styles.menuItem} key={index}>
                   <Link href={`/${item.object_slug}`} passHref>
-                    <MenuLink>{item.title}</MenuLink>
+                    <a className={styles.menuLink}>{item.title}</a>
                   </Link>
-                </MenuItem>
+                </li>
               ))}
-            </Menu>
-          </Column>
-          <Column xs={12} sm={4} md={{ span: 3, offset: 1 }}>
-            <ColumnTitle>{exploreMenuName}</ColumnTitle>
-            <Menu>
+            </ul>
+          </Col>
+          <Col
+            className={styles.column}
+            xs={12}
+            sm={4}
+            md={{ span: 3, offset: 1 }}
+          >
+            <h4 className={styles.columnTitle}>{exploreMenuName}</h4>
+            <ul className={styles.menu}>
               {exploreMenuItems.map((item, index) => (
-                <MenuItem key={index}>
+                <li className={styles.menuItem} key={index}>
                   <Link href={`/${item.object_slug}`} passHref>
-                    <MenuLink
-                      className={item.object_slug === 'rep-login' ? `alt` : ``}
+                    <a
+                      className={
+                        item.object_slug === 'rep-login'
+                          ? `${styles.menuLink} ${styles.alt}`
+                          : `${styles.menuLink}`
+                      }
                     >
                       {item.title}
-                    </MenuLink>
+                    </a>
                   </Link>
-                </MenuItem>
+                </li>
               ))}
-            </Menu>
-          </Column>
-          <SignUpColumn xs={12} sm={4} md={5}>
+            </ul>
+          </Col>
+          <Col className={styles.signupColumn} xs={12} sm={4} md={5}>
             <Row>
               <Col sm={12} md={6} lg={7} xl={8}>
-                <ColumnTitle>Sign up for our newsletter</ColumnTitle>
+                <h4 className={styles.columnTitle}>
+                  Sign up for our newsletter
+                </h4>
               </Col>
               <Col sm={12} md={6} lg={5} xl={4}>
                 <Link href='/newsletter' passHref>
-                  <SignUpLink>Sign up</SignUpLink>
+                  <a className={styles.signupLink}>Sign up</a>
                 </Link>
               </Col>
             </Row>
-          </SignUpColumn>
-        </MenusRow>
+          </Col>
+        </Row>
       </Container>
-      <Copyright>
+      <div className={styles.copyright}>
         <p>&copy; Copyright 2018 - PUROFLUX. All rights reserved.</p>
-      </Copyright>
-    </FooterWrapper>
+      </div>
+    </footer>
   )
 }
-
-const FooterWrapper = styled.footer`
-  background: black;
-  color: white;
-  font-family: 'Lato', sans-serif;
-`
-
-const CallToAction = styled.div`
-  background: ${(props) => props.theme.secondary};
-  border-top: 1px solid white;
-  padding: 0.5rem 0;
-  text-transform: uppercase;
-`
-
-const Headline = styled.h2`
-  color: black;
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin: 32px 0;
-  text-align: left;
-
-  @media (max-width: 767px) {
-    text-align: center;
-  }
-
-  @media (min-width: 992px) {
-    margin: 20px 0;
-  }
-`
-
-const Action = styled.p`
-  color: white;
-  margin-bottom: 0;
-  text-align: right;
-
-  @media (max-width: 767px) {
-    text-align: center;
-  }
-`
-
-const PhoneNumber = styled.a`
-  color: black;
-  font-weight: bold;
-  text-decoration: none;
-  padding: 0 0.5rem;
-
-  &:hover {
-    color: black;
-  }
-`
-
-const CTAlink = styled(StyledButtonLink)`
-  background-color: black;
-  color: white;
-  margin: 0.5rem 0 0.5rem 0.5rem;
-
-  &:hover,
-  &:focus {
-    background-color: white;
-    border-color: white;
-    color: black;
-  }
-
-  @media (min-width: 768px) and (max-width: 840px) {
-    margin-bottom: 0;
-  }
-
-  @media (max-width: 767px) {
-    margin-bottom: 25px;
-  }
-`
-
-const MenusRow = styled(Row)`
-  margin-top: 2rem;
-`
-
-const Column = styled(Col)`
-  text-align: left;
-
-  @media (max-width: 575px) {
-    text-align: center;
-  }
-`
-
-const SignUpColumn = styled(Column)`
-  @media (min-width: 576px) {
-    text-align: right;
-  }
-`
-
-const ColumnTitle = styled.h4`
-  color: white;
-  text-transform: uppercase;
-  font-size: 18px;
-`
-
-const Menu = styled.ul`
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: flex-start;
-
-  @media (max-width: 575px) {
-    align-items: center;
-  }
-`
-
-const MenuItem = styled.li`
-  flex: 0 0 auto;
-  padding: 0.5rem 0 0;
-`
-
-const MenuLink = styled.a`
-  color: ${(props) => props.theme.primary};
-  font-size: 14px;
-  letter-spacing: 1px;
-  text-decoration: none;
-  text-transform: uppercase;
-
-  &.alt {
-    color: ${(props) => props.theme.secondary};
-  }
-
-  &:hover,
-  &:focus {
-    color: ${(props) => props.theme.primary};
-    text-decoration: underline;
-    text-decoration-color: ${(props) => props.theme.secondary};
-  }
-`
-
-const SignUpLink = styled.a`
-  background-color: ${(props) => props.theme.secondary};
-  border: 3px solid ${(props) => props.theme.secondary};
-  color: white;
-  display: inline-block;
-  letter-spacing: 1px;
-  max-width: 100%;
-  padding: 0.5rem 1.25rem;
-  text-decoration: none;
-  text-transform: uppercase;
-
-  &:hover,
-  &:focus {
-    background-color: white;
-    text-decoration: none;
-    border-color: white;
-    color: black;
-  }
-`
-
-const Copyright = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding: 1rem 2rem;
-  letter-spacing: 2px;
-  font-size: 11px;
-
-  @media (max-width: 537px) {
-    justify-content: center;
-  }
-
-  @media (min-width: 538px) {
-    p {
-      margin-bottom: 0;
-    }
-  }
-`
