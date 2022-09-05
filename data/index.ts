@@ -131,18 +131,22 @@ export function getImageData(imageData: WordPressImage | FeaturedMedia | null) {
       }
     }
     if ('media_details' in imageData) {
+      const mediaDetailsHierarchy = 'full' || 'medium'
       imgSrc =
-        imageData.media_details.sizes['full' || 'medium']?.source_url || ''
+        imageData.media_details.sizes[mediaDetailsHierarchy]?.source_url || ''
       imgHeight =
-        imageData.media_details.sizes['full' || 'medium']?.height ||
+        imageData.media_details.sizes[mediaDetailsHierarchy]?.height ||
         imageData.media_details.height
       imgWidth =
-        imageData.media_details.sizes['full' || 'medium']?.width ||
+        imageData.media_details.sizes[mediaDetailsHierarchy]?.width ||
         imageData.media_details.width
     } else if ('sizes' in imageData) {
-      imgSrc = imageData.sizes['large' || 'medium_large'] || ''
-      imgHeight = imageData.sizes['large-height' || 'medium_large-height'] || 0
-      imgWidth = imageData.sizes['large-width' || 'medium_large-width'] || 0
+      const sizesHierarchy = 'large' || 'medium_large'
+      const heightHierarchy = 'large-height' || 'medium_large-height'
+      const widthHierarchy = 'large-width' || 'medium_large-width'
+      imgSrc = imageData.sizes[sizesHierarchy] || ''
+      imgHeight = imageData.sizes[heightHierarchy] || 0
+      imgWidth = imageData.sizes[widthHierarchy] || 0
     }
     if (!imgSrc) imgSrc = imageData.source_url
   }
