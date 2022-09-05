@@ -2,14 +2,10 @@ import React, { Fragment } from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import styled from 'styled-components'
+import styles from './store-locator.module.scss'
 import { formatPhoneNumber } from '../data'
 import Layout from '../components/layout'
-import {
-  HeroContent,
-  HeroContentProps,
-  HeroUnit
-} from '../components/hero-unit'
+import { HeroContent, HeroUnit } from '../components/hero-unit'
 import Accordion, {
   AccordionContent,
   AccordionTitle
@@ -58,7 +54,7 @@ const groupRepsByState = (reps: RepPostType[], states: StatePostType[]) => {
     <Fragment key={i}>
       <AccordionTitle accordionIndex={i}>{state}</AccordionTitle>
       <AccordionContent accordionIndex={i}>
-        <Firms>
+        <div className={styles.firms}>
           {firms.map(
             (
               {
@@ -109,7 +105,7 @@ const groupRepsByState = (reps: RepPostType[], states: StatePostType[]) => {
               </ul>
             )
           )}
-        </Firms>
+        </div>
       </AccordionContent>
     </Fragment>
   ))
@@ -136,7 +132,7 @@ export default function StoreLocatorTemplate(props: StoreLocatorProps) {
           buttons={props.page.acf.buttons}
         />
       </HeroUnit>
-      <Main>
+      <Container className={styles.main}>
         {props.page.content.rendered && (
           <Row>
             <Col>
@@ -155,45 +151,7 @@ export default function StoreLocatorTemplate(props: StoreLocatorProps) {
             </Col>
           </Row>
         )}
-      </Main>
+      </Container>
     </Layout>
   )
 }
-
-const Main = styled(Container)`
-  padding: 45px 15px;
-`
-
-const Firms = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  width: 100%;
-
-  ul {
-    padding: 1rem 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-
-    &:nth-child(even) {
-      background: #f2f2f2;
-      margin: 0 -1rem;
-      padding: 1rem;
-    }
-  }
-
-  @media (max-width: 575px) {
-    ul {
-      grid-template-columns: 1fr;
-    }
-
-    li {
-      &:nth-child(odd) {
-        order: 1;
-      }
-
-      &:nth-child(even) {
-        order: 2;
-      }
-    }
-  }
-`
