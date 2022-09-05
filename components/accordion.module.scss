@@ -1,0 +1,80 @@
+@import '../styles/variables.module.scss';
+
+.wrapper {
+  border: 1px solid black;
+}
+
+.title {
+  background-color: #ffffff;
+  color: $alt-color;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+
+  &:hover {
+    background-color: #f2f2f2;
+  }
+
+  .titleShowing {
+    background-color: $alt-color;
+    color: #ffffff;
+
+    &:hover {
+      background-color: $alt-color;
+    }
+  }
+}
+
+.content {
+  border-bottom: 0;
+  padding: 0.5rem;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+
+  &.contentShowing {
+    border-bottom: 1px solid $alt-color;
+  }
+
+  > div {
+    padding: 0.5rem;
+    width: 100%;
+  }
+
+  span {
+    &:first-of-type {
+      color: $primary-color;
+      text-transform: uppercase;
+    }
+
+    + br + span,
+    + span {
+      color: $body-color;
+    }
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    a {
+      color: $secondary-color;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  li {
+    a {
+      margin-left: 5px;
+    }
+  }
+}
