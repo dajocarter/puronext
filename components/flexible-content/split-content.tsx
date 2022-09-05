@@ -29,7 +29,7 @@ export default function SplitContent(props: SplitContentProps) {
   const rightBgImg = getImageData(props.right_background_image)
 
   return (
-    <div className='row'>
+    <div className={styles.row}>
       <div className={`${styles.side} ${styles.left}`}>
         {props.left_background_image && (
           <Image
