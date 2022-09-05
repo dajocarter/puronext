@@ -1,11 +1,7 @@
 import Head from 'next/head'
-import {
-  HeroContent,
-  HeroContentProps,
-  HeroUnit
-} from '../components/hero-unit'
+import { HeroContent, HeroUnit } from '../components/hero-unit'
 import Layout from '../components/layout'
-import styled from 'styled-components'
+import styles from './typical-installations.module.scss'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -43,18 +39,19 @@ export default function TypicalInstallationsPage(
           buttons={props.page.acf.buttons}
         />
       </HeroUnit>
-      <Main>
+      <Container className={styles.main}>
         <Row>
           <Col xs={12}>
             {props.page.content.rendered && (
-              <Content
+              <div
+                className={styles.content}
                 dangerouslySetInnerHTML={{
                   __html: props.page.content.rendered
                 }}
               />
             )}
             {props.filterSeries && (
-              <Installation>
+              <div className={styles.installation}>
                 <div className='text--center'>
                   <h2>Filter Installations</h2>
                   <h3>Select a Model</h3>
@@ -75,10 +72,10 @@ export default function TypicalInstallationsPage(
                     </div>
                   ))}
                 </Accordion>
-              </Installation>
+              </div>
             )}
             {props.separatorSeries && (
-              <Installation>
+              <div className={styles.installation}>
                 <div className='text--center'>
                   <h2>Separator Installations</h2>
                   <h3>Select a Model</h3>
@@ -100,39 +97,11 @@ export default function TypicalInstallationsPage(
                     </div>
                   ))}
                 </Accordion>
-              </Installation>
+              </div>
             )}
           </Col>
         </Row>
-      </Main>
+      </Container>
     </Layout>
   )
 }
-
-const Main = styled(Container)`
-  padding: 45px 15px;
-`
-
-const Content = styled.div`
-  margin: 0 auto;
-  max-width: 960px;
-  padding: 1.45rem 1.0875rem;
-`
-
-const Installation = styled.div`
-  &:first-of-type {
-    margin-bottom: 45px;
-  }
-
-  .text--center {
-    text-align: center;
-  }
-
-  h2 {
-    text-transform: uppercase;
-  }
-
-  h4 {
-    color: #ccc;
-  }
-`
