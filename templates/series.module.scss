@@ -1,0 +1,126 @@
+@import '../styles/variables.module.scss';
+
+.main {
+  padding: 45px 15px;
+}
+
+.seriesTitle {
+  margin-top: 3rem;
+  text-transform: uppercase;
+
+  &.isPFI {
+    text-align: center;
+  }
+}
+
+.seriesDescription {
+  font-size: 18px;
+  text-transform: uppercase;
+
+  &.isPFI {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+}
+
+.featuredTitle {
+  color: $primary-color;
+  font-size: 36px;
+}
+
+.featuredContent {
+  color: $body-color;
+  font-size: 18px;
+}
+
+.downloadRow {
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.download {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 383px) {
+    justify-content: flex-start;
+  }
+
+  p {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+    margin-left: 10px;
+    color: $body-color;
+  }
+
+  a {
+    text-transform: uppercase;
+    &,
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+}
+
+.pdfIcon {
+  color: $primary-color;
+  font-size: 3rem;
+}
+
+.accordionRow {
+  ul {
+    &:first-child {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      @media (max-width: 575px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    &:not(:first-child) {
+      span {
+        margin-left: 5px;
+      }
+    }
+  }
+}
+
+.modelTitle {
+  text-align: center;
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+}
+
+.modelDescription {
+  text-align: center;
+}
+
+.modelNotes {
+  text-align: center;
+}
+
+.productTitle {
+  margin-top: 4rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.relatedModel {
+  text-align: center;
+
+  &:not(:last-of-type) {
+    margin-bottom: 2rem;
+  }
+}
+
+.relatedTitle {
+  color: $primary-color;
+  font-size: 1.5rem;
+}
+
+.relatedExcerpt {
+  color: $body-color;
+}

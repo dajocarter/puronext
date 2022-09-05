@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { HeroUnit } from '../components/hero-unit'
 import Layout from '../components/layout'
-import styled from 'styled-components'
+import styles from './series.module.scss'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -19,7 +19,7 @@ import Accordion, {
   AccordionContent,
   AccordionTitle
 } from '../components/accordion'
-import { StyledButtonLink } from '../components/links'
+import links from '../styles/links.module.scss'
 import { getImageData } from '../data'
 
 export interface SeriesPageProps extends PageProps {
@@ -60,28 +60,28 @@ export default function SeriesTemplate(props: SeriesPageProps) {
             <Row>
               <Col>
                 <div className='content'>
-                  <SeriesTitle isPFIpage={false}>
+                  <h1 className={styles.seriesTitle}>
                     {props.page.title.rendered} Series
-                  </SeriesTitle>
-                  <SeriesDescription isPFIpage={false}>
+                  </h1>
+                  <p className={styles.seriesDescription}>
                     {props.page.acf.description}
-                  </SeriesDescription>
+                  </p>
                 </div>
               </Col>
             </Row>
           </>
         )}
       </HeroUnit>
-      <Main>
+      <Container className={styles.main}>
         {isPFIpage && (
           <Row>
             <Col>
-              <SeriesTitle isPFIpage>
+              <h1 className={`${styles.seriesTitle} ${styles.isPFI}`}>
                 {props.page.title.rendered} Series
-              </SeriesTitle>
-              <SeriesDescription isPFIpage>
+              </h1>
+              <p className={`${styles.seriesDescription} ${styles.isPFI}`}>
                 {props.page.acf.description}
-              </SeriesDescription>
+              </p>
             </Col>
           </Row>
         )}
@@ -96,13 +96,14 @@ export default function SeriesTemplate(props: SeriesPageProps) {
             />
           </Col>
           <Col sm={12} md={6}>
-            <FeaturedTitle>Details</FeaturedTitle>
-            <FeaturedContent
+            <h2 className={styles.featuredTitle}>Details</h2>
+            <div
+              className={styles.featuredContent}
               dangerouslySetInnerHTML={{ __html: props.page.content.rendered }}
             />
           </Col>
         </Row>
-        <DownloadRow>
+        <Row className={styles.downloadRow}>
           {props.page.acf.datasheet && (
             <DownloadCol
               title={`${props.page.title.rendered} Series Datasheet`}
@@ -127,17 +128,17 @@ export default function SeriesTemplate(props: SeriesPageProps) {
               file={props.page.acf.optional_file}
             />
           )}
-        </DownloadRow>
+        </Row>
         {props.page.acf.series_models && (
           <Row>
             <Col>
-              <ModelTitle>Select a Model</ModelTitle>
-              <ModelDescription>View product summary</ModelDescription>
+              <h2 className={styles.modelTitle}>Select a Model</h2>
+              <p className={styles.modelDescription}>View product summary</p>
             </Col>
           </Row>
         )}
         {props.page.acf.series_models && (
-          <AccordionRow>
+          <Row className={styles.accordionRow}>
             <Col>
               <Accordion>
                 {props.models.map((model, i) => (
@@ -188,12 +189,13 @@ export default function SeriesTemplate(props: SeriesPageProps) {
                 ))}
               </Accordion>
             </Col>
-          </AccordionRow>
+          </Row>
         )}
         {props.page.acf.model_notes && (
           <Row>
             <Col>
-              <ModelNotes
+              <div
+                className={styles.modelNotes}
                 dangerouslySetInnerHTML={{ __html: props.page.acf.model_notes }}
               />
             </Col>
@@ -202,24 +204,38 @@ export default function SeriesTemplate(props: SeriesPageProps) {
         {props.seriesProduct?.title && (
           <Row>
             <Col>
-              <ProductTitle>{props.seriesProduct.title.rendered}</ProductTitle>
+              <h2 className={styles.productTitle}>
+                {props.seriesProduct.title.rendered}
+              </h2>
             </Col>
           </Row>
         )}
         {props.relatedSeries.length > 0 && (
           <Row style={{ justifyContent: 'center' }}>
             {props.relatedSeries.map((relatedSeries) => (
-              <RelatedModel key={relatedSeries.id} xs={12} md={4}>
-                <RelatedTitle>{relatedSeries.title.rendered}</RelatedTitle>
-                <RelatedExcerpt>{relatedSeries.acf.description}</RelatedExcerpt>
-                <StyledButtonLink primary href={relatedSeries.slug}>
+              <Col
+                className={styles.relatedModel}
+                key={relatedSeries.id}
+                xs={12}
+                md={4}
+              >
+                <h4 className={styles.relatedTitle}>
+                  {relatedSeries.title.rendered}
+                </h4>
+                <p className={styles.relatedExcerpt}>
+                  {relatedSeries.acf.description}
+                </p>
+                <a
+                  className={`${links.buttonLink} ${links.primary}`}
+                  href={relatedSeries.slug}
+                >
                   View Product
-                </StyledButtonLink>
-              </RelatedModel>
+                </a>
+              </Col>
             ))}
           </Row>
         )}
-      </Main>
+      </Container>
     </Layout>
   )
 }
@@ -232,132 +248,14 @@ const DownloadCol = ({
   file: WordPressFile
 }) => (
   <Col xs={12} sm={3}>
-    <Download>
-      <PDFicon />
+    <div className={styles.download}>
+      <FaFilePdf className={styles.pdfIcon} />
       <p>
         <span>{title}</span>
         <a href={file.url} target='_blank' rel='noopener noreferrer'>
           DOWNLOAD
         </a>
       </p>
-    </Download>
+    </div>
   </Col>
 )
-
-const Main = styled(Container)`
-  padding: 45px 15px;
-`
-
-const SeriesTitle = styled.h1<{ isPFIpage: boolean }>`
-  margin-top: 3rem;
-  text-transform: uppercase;
-  ${(props) => props.isPFIpage && 'text-align: center;'}
-`
-const SeriesDescription = styled.p<{ isPFIpage: boolean }>`
-  font-size: 18px;
-  text-transform: uppercase;
-  ${(props) =>
-    props.isPFIpage &&
-    `
-      text-align: center;
-      margin-bottom: 3rem;
-  `}
-`
-
-const FeaturedTitle = styled.h2`
-  color: ${({ theme }) => theme.primary};
-  font-size: 36px;
-`
-const FeaturedContent = styled.div`
-  color: ${({ theme }) => theme.body};
-  font-size: 18px;
-`
-
-const DownloadRow = styled(Row)`
-  justify-content: center;
-  margin-top: 3rem;
-`
-
-const Download = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  @media (max-width: 383px) {
-    justify-content: flex-start;
-  }
-
-  p {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 0;
-    margin-left: 10px;
-    color: ${({ theme }) => theme.body};
-  }
-
-  a {
-    text-transform: uppercase;
-    &,
-    &:hover {
-      color: ${({ theme }) => theme.secondary};
-    }
-  }
-`
-const PDFicon = styled(FaFilePdf)`
-  color: ${({ theme }) => theme.primary};
-  font-size: 3rem;
-`
-
-const AccordionRow = styled(Row)`
-  ul {
-    &:first-child {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-
-      @media (max-width: 575px) {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    &:not(:first-child) {
-      span {
-        margin-left: 5px;
-      }
-    }
-  }
-`
-
-const ModelTitle = styled.h2`
-  text-align: center;
-  margin-top: 4rem;
-  margin-bottom: 1rem;
-`
-const ModelDescription = styled.p`
-  text-align: center;
-`
-const ModelNotes = styled.p`
-  text-align: center;
-`
-
-const ProductTitle = styled.h2`
-  margin-top: 4rem;
-  margin-bottom: 3rem;
-  text-align: center;
-`
-
-const RelatedModel = styled(Col)`
-  text-align: center;
-
-  &:not(:last-of-type) {
-    margin-bottom: 2rem;
-  }
-`
-
-const RelatedTitle = styled.h4`
-  color: ${({ theme }) => theme.primary};
-  font-size: 1.5rem;
-`
-
-const RelatedExcerpt = styled.p`
-  color: ${({ theme }) => theme.body};
-`
