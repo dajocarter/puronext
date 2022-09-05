@@ -1,0 +1,39 @@
+@import '../styles/variables.module.scss';
+
+.main {
+  padding: 45px 15px;
+}
+
+.columnTitle {
+  border-bottom: 1px solid $alt-color;
+  margin-bottom: 2rem;
+  padding-bottom: 0.75rem;
+}
+
+.gMap {
+  iframe {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+  }
+}
+
+.address {
+  margin-top: 1rem;
+}
+
+.title {
+  color: $primary-color;
+}
+
+.value {
+  color: $alt-color;
+  margin-left: 5px;
+  text-decoration: underline;
+
+  &:hover,
+  &:focus {
+    color: $alt-color;
+  }
+}

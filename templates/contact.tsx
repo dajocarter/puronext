@@ -6,7 +6,7 @@ import {
 } from '../components/hero-unit'
 import Layout from '../components/layout'
 import { formatPhoneNumber } from '../data'
-import styled from 'styled-components'
+import styles from './contact.module.scss'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -42,11 +42,11 @@ export default function ContactPage(props: ContactPageProps) {
           buttons={props.page.acf.buttons}
         />
       </HeroUnit>
-      <Main>
+      <Container className={styles.main}>
         <Row>
           <Col md={5}>
-            <ColumnTitle>Contact Information</ColumnTitle>
-            <GMap>
+            <h2 className={styles.columnTitle}>Contact Information</h2>
+            <div className={styles.gMap}>
               <iframe
                 src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3296.9867927125356!2d-118.80215204942941!3d34.27438898045055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c282bad55e5c73%3A0xe389b73478d03800!2sPuroflux+Corporation!5e0!3m2!1sen!2sus!4v1535824827764'
                 width='600'
@@ -56,81 +56,49 @@ export default function ContactPage(props: ContactPageProps) {
                 title='map'
                 allowFullScreen
               />
-            </GMap>
-            <Address
+            </div>
+            <p
+              className={styles.address}
               dangerouslySetInnerHTML={{ __html: props.page.acf.address }}
             />
             <p>
-              <Title>Tel:</Title>
-              <Value
+              <span className={styles.title}>Tel:</span>
+              <a
+                className={styles.value}
                 href={`tel:${formatPhoneNumber(
                   props.page.acf.phone_number,
                   'back'
                 )}`}
               >
                 {formatPhoneNumber(props.page.acf.phone_number, 'front')}
-              </Value>{' '}
+              </a>{' '}
               <br />
-              <Title>Fax:</Title>
-              <Value
+              <span className={styles.title}>Fax:</span>
+              <a
+                className={styles.value}
                 href={`tel:${formatPhoneNumber(
                   props.page.acf.fax_number,
                   'back'
                 )}`}
               >
                 {formatPhoneNumber(props.page.acf.fax_number, 'front')}
-              </Value>{' '}
+              </a>{' '}
               <br />
-              <Title>Email:</Title>
-              <Value href={`mailto:${props.page.acf.contact_email}`}>
+              <span className={styles.title}>Email:</span>
+              <a
+                className={styles.value}
+                href={`mailto:${props.page.acf.contact_email}`}
+              >
                 {props.page.acf.contact_email}
-              </Value>
+              </a>
             </p>
           </Col>
           <Col md={{ span: 5, offset: 2 }}>
-            <ColumnTitle>Contact Form</ColumnTitle>
+            <h2 className={styles.columnTitle}>Contact Form</h2>
             <ContactForm />
           </Col>
         </Row>
-      </Main>
+      </Container>
     </Layout>
   )
 }
-
-const Main = styled(Container)`
-  padding: 45px 15px;
-`
-
-const ColumnTitle = styled.h2`
-  border-bottom: 1px solid black;
-  margin-bottom: 2rem;
-  padding-bottom: 0.75rem;
-`
-
-const GMap = styled.div`
-  iframe {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 100%;
-  }
-`
-
-const Address = styled.p`
-  margin-top: 1rem;
-`
-
-const Title = styled.span`
-  color: ${({ theme }) => theme.primary};
-`
-
-const Value = styled.a`
-  color: black;
-  margin-left: 5px;
-  text-decoration: underline;
-
-  &:hover,
-  &:focus {
-    color: black;
-  }
-`
