@@ -1,7 +1,7 @@
-import styled from 'styled-components'
+import { ReactNode } from 'react'
 import Header, { HeaderProps } from './header'
 import Footer, { FooterProps } from './footer'
-import { ReactNode } from 'react'
+import styles from './layout.module.scss'
 
 export default function Layout(props: {
   header: HeaderProps
@@ -11,12 +11,8 @@ export default function Layout(props: {
   return (
     <>
       <Header {...props.header} />
-      <Main>{props.children}</Main>
+      <main className={styles.main}>{props.children}</main>
       <Footer {...props.footer} />
     </>
   )
 }
-
-const Main = styled.main`
-  font-family: 'Lato', sans-serif;
-`
