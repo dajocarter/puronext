@@ -70,8 +70,7 @@ export default function Header({ logo, siteTitle, navs }: HeaderProps) {
                           ? '/'
                           : `/${item.object_slug}/`
                       }
-                      passHref
-                      activeClassName='active'
+                      activeClassName={styles.active}
                     >
                       <a
                         className={
@@ -91,8 +90,7 @@ export default function Header({ logo, siteTitle, navs }: HeaderProps) {
                           <li className={styles.navItem} key={child.object_id}>
                             <ActiveLink
                               href={`/${child.object_slug}/`}
-                              passHref
-                              activeClassName='active'
+                              activeClassName={styles.active}
                             >
                               <a className={styles.navLink}>{child.title}</a>
                             </ActiveLink>
@@ -107,8 +105,7 @@ export default function Header({ logo, siteTitle, navs }: HeaderProps) {
                                   >
                                     <ActiveLink
                                       href={`/${grandchild.object_slug}/`}
-                                      passHref
-                                      activeClassName='active'
+                                      activeClassName={styles.active}
                                     >
                                       <a className={styles.navLink}>
                                         {grandchild.title}
@@ -162,8 +159,7 @@ export default function Header({ logo, siteTitle, navs }: HeaderProps) {
                           ? `/`
                           : `/${item.object_slug}/`
                       }
-                      passHref
-                      activeClassName='active'
+                      activeClassName={styles.active}
                     >
                       <a
                         className={

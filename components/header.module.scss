@@ -144,10 +144,13 @@
   }
 
   &:hover,
-  &:focus,
-  &.active {
+  &:focus {
     color: $primary-color;
   }
+}
+
+.active {
+  color: $primary-color;
 }
 
 .menuToggle {
