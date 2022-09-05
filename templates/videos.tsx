@@ -5,7 +5,7 @@ import {
   HeroUnit
 } from '../components/hero-unit'
 import Layout from '../components/layout'
-import styled from 'styled-components'
+import styles from './videos.module.scss'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -37,11 +37,12 @@ export default function VideoPageTemplate(props: VideoPageProps) {
           buttons={props.page.acf.buttons}
         />
       </HeroUnit>
-      <Main>
+      <Container className={styles.main}>
         <Row>
           <Col xs={12}>
             {props.page.content.rendered && (
-              <Content
+              <div
+                className={styles.content}
                 dangerouslySetInnerHTML={{
                   __html: props.page.content.rendered
                 }}
@@ -51,51 +52,17 @@ export default function VideoPageTemplate(props: VideoPageProps) {
               <Row>
                 {props.page.acf.videos.map(({ video }, i) => (
                   <Col md={6} key={i}>
-                    <Embed dangerouslySetInnerHTML={{ __html: video }} />
+                    <div
+                      className={styles.embed}
+                      dangerouslySetInnerHTML={{ __html: video }}
+                    />
                   </Col>
                 ))}
               </Row>
             )}
           </Col>
         </Row>
-      </Main>
+      </Container>
     </Layout>
   )
 }
-
-const Main = styled(Container)`
-  padding: 45px 15px;
-`
-
-const Content = styled.div`
-  color: ${({ theme }) => theme.body};
-  margin: 0 auto;
-  max-width: 960px;
-  padding: 45px 15px;
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    color: ${({ theme }) => theme.primary};
-  }
-`
-
-const Embed = styled.div`
-  position: relative;
-  padding-bottom: 56.25%;
-  overflow: hidden;
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 45px;
-
-  iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-`
