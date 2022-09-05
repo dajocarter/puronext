@@ -1,0 +1,80 @@
+@import '../styles/variables.module.scss';
+
+.main {
+  padding: 45px 15px;
+}
+
+.productTitle {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.productDescription {
+  text-align: center;
+  color: $body-color;
+  margin-bottom: 3rem;
+}
+
+.featuredProduct {
+  text-align: center;
+}
+
+.featuredTitle {
+  color: $primary-color;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.featuredBtn {
+  margin-top: 2rem;
+}
+
+.series {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.seriesTitle {
+  color: $primary-color;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.seriesDescrip {
+  color: $body-color;
+  font-size: 0.85rem;
+}
+
+.overviewTitle {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+.overviewContent {
+  color: $body-color;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $primary-color;
+  }
+
+  a {
+    color: $secondary-color;
+
+    &:hover,
+    &:focus {
+      color: $secondary-color;
+      text-decoration-color: $primary-color;
+    }
+  }
+
+  iframe {
+    display: block;
+    margin: 1rem auto;
+    max-width: 100%;
+  }
+}
