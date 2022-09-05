@@ -15,8 +15,9 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import styled from 'styled-components'
 import Image from 'next/image'
-import { StyledButtonLink } from '../components/links'
 import FlexibleContent, { Layouts } from '../components/flexible-content'
+import links from '../styles/links.module.scss'
+import Link from 'next/link'
 
 interface HomePageProps {
   header: HeaderProps
@@ -91,9 +92,11 @@ export default function Home(props: HomePageProps) {
                 __html: props.page.acf.featured_content
               }}
             />
-            <StyledButtonLink secondary href='/gallery/'>
-              View Gallery
-            </StyledButtonLink>
+            <Link href='/gallery/'>
+              <a className={`${links.buttonLink} ${links.secondary}`}>
+                View Gallery
+              </a>
+            </Link>
           </Column>
         </Row>
       </FeatureContainer>
