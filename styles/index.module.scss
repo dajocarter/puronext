@@ -1,0 +1,60 @@
+@import './variables.module.scss';
+
+.featureContainer {
+  margin-top: 45px;
+  margin-bottom: 45px;
+
+  > .row > .col {
+    position: relative;
+    height: 73px;
+  }
+}
+
+.column {
+  blockquote {
+    border-left: 0.5rem solid $primary-color;
+    padding: 1rem;
+    background: #f7f7f7;
+    font-style: italic;
+
+    > p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &:first-of-type {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media (max-width: 991px) {
+    &:last-of-type {
+      margin-top: 2rem;
+    }
+  }
+}
+
+.featureTitle {
+  border-bottom: 3px solid $primary-color;
+  color: #7f7f7f;
+  padding: 0 0.5rem 0.5rem;
+  font-family: 'Josefin Sans', sans-serif;
+  text-transform: uppercase;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  &.featuredImage {
+    @media (min-width: 992px) {
+      left: 75%;
+      transform: translateX(-75%);
+    }
+  }
+}
+
+.wpContent {
+  color: $body-color;
+}

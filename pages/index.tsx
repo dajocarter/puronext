@@ -13,7 +13,7 @@ import {
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import styled from 'styled-components'
+import styles from '../styles/index.module.scss'
 import Image from 'next/image'
 import FlexibleContent, { Layouts } from '../components/flexible-content'
 import links from '../styles/links.module.scss'
@@ -63,17 +63,23 @@ export default function Home(props: HomePageProps) {
           buttons={props.page.acf.buttons}
         />
       </HeroUnit>
-      <FeatureContainer>
+      <Container className={styles.featuredContainer}>
         <Row>
           <Col>
-            <FeatureTitle hasFeaturedImage={hasFeaturedImage}>
+            <h2
+              className={
+                hasFeaturedImage
+                  ? `${styles.featureTitle} ${styles.featuredImage}`
+                  : styles.featureTitle
+              }
+            >
               Featured
-            </FeatureTitle>
+            </h2>
           </Col>
         </Row>
         <Row>
           {hasFeaturedImage && (
-            <Column xs={12} lg={6}>
+            <Col className={styles.column} xs={12} lg={6}>
               <Image
                 src={props.page.acf.featured_image.sizes.medium_large}
                 alt={props.page.acf.featured_image.alt}
@@ -84,10 +90,11 @@ export default function Home(props: HomePageProps) {
                   props.page.acf.featured_image.sizes['medium_large-height']
                 }
               />
-            </Column>
+            </Col>
           )}
-          <Column xs={12} lg={hasFeaturedImage ? 6 : 12}>
-            <WPcontent
+          <Col className={styles.column} xs={12} lg={hasFeaturedImage ? 6 : 12}>
+            <div
+              className={styles.wpContent}
               dangerouslySetInnerHTML={{
                 __html: props.page.acf.featured_content
               }}
@@ -97,9 +104,9 @@ export default function Home(props: HomePageProps) {
                 View Gallery
               </a>
             </Link>
-          </Column>
+          </Col>
         </Row>
-      </FeatureContainer>
+      </Container>
       {props.page.acf.layouts && (
         <FlexibleContent layouts={props.page.acf.layouts} />
       )}
@@ -119,65 +126,3 @@ export const getStaticProps: GetStaticProps = async (
     }
   }
 }
-
-const FeatureContainer = styled(Container)`
-  margin-top: 45px;
-  margin-bottom: 45px;
-
-  > .row > .col {
-    position: relative;
-    height: 73px;
-  }
-`
-
-const Column = styled(Col)`
-  blockquote {
-    border-left: ${({ theme }) => `0.5rem solid ${theme.primary}`};
-    padding: 1rem;
-    background: #f7f7f7;
-    font-style: italic;
-
-    > p:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  &:first-of-type {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  @media (max-width: 991px) {
-    &:last-of-type {
-      margin-top: 2rem;
-    }
-  }
-`
-
-const FeatureTitle = styled.h2<{ hasFeaturedImage: boolean }>`
-  border-bottom: ${({ theme }) => `3px solid ${theme.primary}`};
-  color: #7f7f7f;
-  padding: 0 0.5rem 0.5rem;
-  font-family: 'Josefin Sans', sans-serif;
-  text-transform: uppercase;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-
-  ${({ hasFeaturedImage }) =>
-    hasFeaturedImage
-      ? `
-    @media (min-width: 992px) {
-      left: 75%;
-      transform: translateX(-75%);
-    }
-  `
-      : ``}
-`
-
-const WPcontent = styled.div`
-  color: ${({ theme }) => theme.body};
-`
