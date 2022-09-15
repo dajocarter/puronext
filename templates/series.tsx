@@ -59,12 +59,14 @@ export default function SeriesTemplate(props: SeriesPageProps) {
             </Row>
             <Row>
               <Col>
-                <h1 className={styles.seriesTitle}>
-                  {props.page.title.rendered} Series
-                </h1>
-                <p className={styles.seriesDescription}>
-                  {props.page.acf.description}
-                </p>
+                <div className={styles.content}>
+                  <h1 className={styles.seriesTitle}>
+                    {props.page.title.rendered} Series
+                  </h1>
+                  <p className={styles.seriesDescription}>
+                    {props.page.acf.description}
+                  </p>
+                </div>
               </Col>
             </Row>
           </>
