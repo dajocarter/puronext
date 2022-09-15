@@ -50,7 +50,6 @@
   &.featuredImage {
     @media (min-width: 992px) {
       left: 75%;
-      transform: translateX(-75%);
     }
   }
 }
