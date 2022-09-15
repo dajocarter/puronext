@@ -52,7 +52,7 @@ export default function TypicalInstallationsPage(
             )}
             {props.filterSeries && (
               <div className={styles.installation}>
-                <div className='text--center'>
+                <div className={styles.textCenter}>
                   <h2>Filter Installations</h2>
                   <h3>Select a Model</h3>
                   <h4>View product summary</h4>
@@ -76,7 +76,7 @@ export default function TypicalInstallationsPage(
             )}
             {props.separatorSeries && (
               <div className={styles.installation}>
-                <div className='text--center'>
+                <div className={styles.textCenter}>
                   <h2>Separator Installations</h2>
                   <h3>Select a Model</h3>
                   <h4>View product summary</h4>

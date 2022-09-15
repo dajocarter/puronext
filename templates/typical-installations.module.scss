@@ -13,10 +13,6 @@
     margin-bottom: 45px;
   }
 
-  .text--center {
-    text-align: center;
-  }
-
   h2 {
     text-transform: uppercase;
   }
@@ -24,4 +20,8 @@
   h4 {
     color: #ccc;
   }
+}
+
+.textCenter {
+  text-align: center;
 }
