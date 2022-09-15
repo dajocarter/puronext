@@ -68,7 +68,7 @@ export default function Header({ logo, siteTitle, navs }: HeaderProps) {
                       href={
                         item.object_slug === 'home'
                           ? '/'
-                          : `/${item.object_slug}/`
+                          : `/${item.object_slug}`
                       }
                       activeClassName={styles.active}
                     >
@@ -89,7 +89,7 @@ export default function Header({ logo, siteTitle, navs }: HeaderProps) {
                         {item.children.map((child) => (
                           <li className={styles.navItem} key={child.object_id}>
                             <ActiveLink
-                              href={`/${child.object_slug}/`}
+                              href={`/${child.object_slug}`}
                               activeClassName={styles.active}
                             >
                               <a className={styles.navLink}>{child.title}</a>
@@ -104,7 +104,7 @@ export default function Header({ logo, siteTitle, navs }: HeaderProps) {
                                     key={grandchild.object_id}
                                   >
                                     <ActiveLink
-                                      href={`/${grandchild.object_slug}/`}
+                                      href={`/${grandchild.object_slug}`}
                                       activeClassName={styles.active}
                                     >
                                       <a className={styles.navLink}>
@@ -157,7 +157,7 @@ export default function Header({ logo, siteTitle, navs }: HeaderProps) {
                       href={
                         item.object_slug === 'home'
                           ? `/`
-                          : `/${item.object_slug}/`
+                          : `/${item.object_slug}`
                       }
                       activeClassName={styles.active}
                     >
