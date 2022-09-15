@@ -127,8 +127,8 @@ export default function Header({ logo, siteTitle, navs }: HeaderProps) {
           <div
             className={
               menuIsOpen
-                ? `${styles.overlay} ${styles.overlayOpen}`
-                : `${styles.overlay} 'd-xl-none'`
+                ? `${styles.overlay} ${styles.overlayOpen} d-xl-none`
+                : `${styles.overlay} d-xl-none`
             }
           >
             <div
