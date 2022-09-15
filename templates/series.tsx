@@ -70,7 +70,9 @@ export default function SeriesTemplate(props: SeriesPageProps) {
           </>
         )}
       </HeroUnit>
-      <Container className={styles.main}>
+      <Container
+        className={isPFIpage ? `${styles.main} ${styles.isPFI}` : styles.main}
+      >
         {isPFIpage && (
           <Row>
             <Col>
