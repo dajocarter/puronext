@@ -58,11 +58,11 @@
     font-size: 2rem;
   }
 
-  .alignleft {
+  :global(.alignleft) {
     float: left;
   }
 
-  .alignright {
+  :global(.alignright) {
     float: right;
   }
 
