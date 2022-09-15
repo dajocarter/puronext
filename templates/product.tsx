@@ -70,15 +70,14 @@ export default function ProductTemplate(props: ProductPageProps) {
             {props.page.acf.title && (
               <p className={styles.featuredTitle}>{props.page.acf.title}</p>
             )}
-            <div>
+            {imgSrc && (
               <Image
                 alt={imgAlt}
                 src={imgSrc}
-                height={imgHeight}
-                width={imgWidth}
-                layout='responsive'
+                height={(imgHeight * 250) / imgWidth}
+                width={250}
               />
-            </div>
+            )}
             {props.page.acf.files && (
               <Row style={{ justifyContent: 'center' }}>
                 {props.page.acf.files.map(({ file }) => (
