@@ -96,7 +96,7 @@ export default function Header({ logo, siteTitle, navs }: HeaderProps) {
                             </ActiveLink>
                             {child.children && (
                               <ul
-                                className={`${styles.navMenu} ${styles.subMenu} ${styles.grandChildMenu}`}
+                                className={`${styles.navMenu} ${styles.subMenu} ${styles.grandchildMenu}`}
                               >
                                 {child.children.map((grandchild) => (
                                   <li
