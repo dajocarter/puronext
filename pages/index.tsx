@@ -51,9 +51,9 @@ export default function Home(props: HomePageProps) {
           buttons={props.page.acf.buttons}
         />
       </HeroUnit>
-      <Container className={styles.featuredContainer}>
+      <Container className={styles.featureContainer}>
         <Row>
-          <Col>
+          <Col className={styles.featureTitleContainer}>
             <h2
               className={
                 imgSrc
