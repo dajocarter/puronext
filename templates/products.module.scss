@@ -5,25 +5,23 @@
 }
 
 .tabs {
-  &.nav {
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-    display: grid;
-    grid-gap: 1rem;
-    grid-template-columns: repeat(1, 1fr);
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(1, 1fr);
 
-    @media (min-width: 768px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    @media (min-width: 991px) {
-      grid-template-columns: repeat(3, 1fr);
-    }
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .nav-link {
-    padding: 0;
+  @media (min-width: 991px) {
+    grid-template-columns: repeat(3, 1fr);
   }
+}
+
+.navLink {
+  padding: 0;
 }
 
 .pane {
@@ -51,13 +49,13 @@
 .closeIcon {
   position: absolute;
   top: 0;
-  right: 1rem;
+  right: 0;
 }
 
 .arrows {
   position: absolute;
   bottom: 0;
-  right: 1rem;
+  right: 0;
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: 1fr 1fr;

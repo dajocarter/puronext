@@ -107,7 +107,7 @@ export default function ProductsPageTemplate(props: ProductsPageProps) {
                       getImageData(product._embedded['wp:featuredmedia'][0])
                     return (
                       <Nav.Item key={product.id}>
-                        <Nav.Link eventKey={index}>
+                        <Nav.Link eventKey={index} className={styles.navLink}>
                           <Image
                             alt={imgAlt}
                             src={imgSrc}
@@ -119,7 +119,10 @@ export default function ProductsPageTemplate(props: ProductsPageProps) {
                     )
                   })}
                   <Nav.Item>
-                    <Nav.Link eventKey={props.products.length}>
+                    <Nav.Link
+                      eventKey={props.products.length}
+                      className={styles.navLink}
+                    >
                       <Image
                         alt={addlItemImage.imgAlt}
                         src={addlItemImage.imgSrc}
