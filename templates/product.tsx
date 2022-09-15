@@ -84,7 +84,7 @@ export default function ProductTemplate(props: ProductPageProps) {
                 {props.page.acf.files.map(({ file }) => (
                   <Col key={file.id}>
                     <a
-                      className={`${links.buttonLink} ${links.primary} ${styles.featuredBtn}`}
+                      className={`${links.buttonLink} ${links.primary} ${links.featuredButton}`}
                       href={file.url}
                       target='_blank'
                       rel='noopener noreferrer'

@@ -43,4 +43,38 @@
       background-color: $secondary-color;
     }
   }
+
+  &.ctaLink {
+    background-color: $alt-color;
+    color: white;
+    margin: 0.5rem 0 0.5rem 0.5rem;
+
+    &:hover,
+    &:focus {
+      background-color: white;
+      border-color: white;
+      color: $alt-color;
+    }
+
+    @media (min-width: 768px) and (max-width: 840px) {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 767px) {
+      margin-bottom: 25px;
+    }
+  }
+
+  &.whiteColor {
+    color: white;
+  }
+
+  &.heroButton {
+    color: white;
+    margin: 0.5rem;
+  }
+
+  &.featuredButton {
+    margin-top: 2rem;
+  }
 }

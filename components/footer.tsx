@@ -40,7 +40,7 @@ export default function Footer({ navs }: FooterProps) {
                 </a>{' '}
                 or{' '}
                 <Link href='/contact' passHref>
-                  <a className={`${links.buttonLink} ${styles.ctaLink}`}>
+                  <a className={`${links.buttonLink} ${links.ctaLink}`}>
                     Contact Us
                   </a>
                 </Link>

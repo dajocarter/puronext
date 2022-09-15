@@ -71,7 +71,7 @@ export function HeroContent({ content, buttons }: HeroContentProps) {
               rel={link.button_link.target && 'noopener noreferrer'}
               className={`${links.buttonLink} ${
                 i % 2 === 0 && `${links.primary}`
-              } ${i % 2 === 1 && `${links.secondary}`} ${styles.button}`}
+              } ${i % 2 === 1 && `${links.secondary}`} ${links.heroButton}`}
             >
               {link.button_link.title}
             </a>

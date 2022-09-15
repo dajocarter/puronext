@@ -42,7 +42,7 @@ export default function SplitContent(props: SplitContentProps) {
           />
           {props.left_link && (
             <a
-              className={`${links.buttonLink} ${links.primary} ${styles.buttonLink}`}
+              className={`${links.buttonLink} ${links.primary} ${links.whiteColor}`}
               href={`/${props.left_link.url}/`}
               target={props.left_link.target}
             >
@@ -67,7 +67,7 @@ export default function SplitContent(props: SplitContentProps) {
           />
           {props.right_link && (
             <a
-              className={`${links.buttonLink} ${links.secondary} ${styles.buttonLink}`}
+              className={`${links.buttonLink} ${links.secondary} ${links.whiteColor}`}
               href={`/${props.right_link.url}/`}
               target={props.right_link.target}
             >

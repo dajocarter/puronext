@@ -1,7 +1,7 @@
 @import '../styles/variables.module.scss';
 
 .footerWrapper {
-  background: black;
+  background: $alt-color;
   color: white;
   font-family: 'Lato', sans-serif;
 }
@@ -40,34 +40,13 @@
 }
 
 .phoneNumber {
-  color: black;
+  color: $alt-color;
   font-weight: bold;
   text-decoration: none;
   padding: 0 0.5rem;
 
   &:hover {
-    color: black;
-  }
-}
-
-.ctaLink {
-  background-color: black;
-  color: white;
-  margin: 0.5rem 0 0.5rem 0.5rem;
-
-  &:hover,
-  &:focus {
-    background-color: white;
-    border-color: white;
-    color: black;
-  }
-
-  @media (min-width: 768px) and (max-width: 840px) {
-    margin-bottom: 0;
-  }
-
-  @media (max-width: 767px) {
-    margin-bottom: 25px;
+    color: $alt-color;
   }
 }
 
@@ -148,7 +127,7 @@
     background-color: white;
     text-decoration: none;
     border-color: white;
-    color: black;
+    color: $alt-color;
   }
 }
 
