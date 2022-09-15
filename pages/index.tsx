@@ -2,8 +2,6 @@ import type { GetStaticProps, GetStaticPropsContext } from 'next'
 import Head from 'next/head'
 import getLayoutData from '../data/layout'
 import Layout from '../components/layout'
-import { HeaderProps } from '../components/header'
-import { FooterProps } from '../components/footer'
 import { getPageData } from '../data/page'
 import {
   HeroUnit,
@@ -18,33 +16,20 @@ import Image from 'next/image'
 import FlexibleContent, { Layouts } from '../components/flexible-content'
 import links from '../styles/links.module.scss'
 import Link from 'next/link'
+import { PageProps } from './[slug]'
+import { WordPressImage, WordPressPage } from '../data/types'
+import { getImageData } from '../data'
 
-interface HomePageProps {
-  header: HeaderProps
-  footer: FooterProps
-  heroImg: {
-    media_details: {
-      sizes: {
-        full: {
-          source_url: string
-        }
-      }
-    }
+interface HomePage extends WordPressPage {
+  acf: HeroContentProps & {
+    featured_image: WordPressImage
+    featured_content: string
+    layouts: Layouts[]
   }
-  page: {
-    acf: HeroContentProps & {
-      featured_image: {
-        alt: string
-        sizes: {
-          medium_large: string
-          'medium_large-height': number
-          'medium_large-width': number
-        }
-      }
-      featured_content: string
-      layouts: Layouts[]
-    }
-  }
+}
+
+interface HomePageProps extends PageProps {
+  page: HomePage
 }
 
 export default function Home(props: HomePageProps) {
