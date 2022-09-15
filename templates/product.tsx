@@ -116,9 +116,8 @@ export default function ProductTemplate(props: ProductPageProps) {
                   <Image
                     alt={imgAlt}
                     src={imgSrc}
-                    height={imgHeight}
-                    width={imgWidth}
-                    layout='responsive'
+                    height={175}
+                    width={(imgWidth * 175) / imgHeight}
                   />
                   {series.acf.description && (
                     <p className={styles.seriesDescrip}>
