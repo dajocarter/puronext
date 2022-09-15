@@ -56,13 +56,7 @@ export function HeroContent({ content, buttons }: HeroContentProps) {
         />
       )}
       {buttons && buttons.length > 0 && (
-        <div
-          className={
-            buttons.length > 1
-              ? `${styles.buttons}`
-              : `${styles.buttons} ${styles.single}`
-          }
-        >
+        <div className={styles.buttons}>
           {buttons.map((link, i) => (
             <a
               key={i}
