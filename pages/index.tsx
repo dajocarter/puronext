@@ -33,7 +33,10 @@ interface HomePageProps extends PageProps {
 }
 
 export default function Home(props: HomePageProps) {
-  const hasFeaturedImage = !!props.page.acf.featured_image
+  const { imgSrc, imgAlt, imgHeight, imgWidth } = getImageData(
+    props.page.acf.featured_image
+  )
+
   return (
     <Layout {...props}>
       <Head>
@@ -53,7 +56,7 @@ export default function Home(props: HomePageProps) {
           <Col>
             <h2
               className={
-                hasFeaturedImage
+                imgSrc
                   ? `${styles.featureTitle} ${styles.featuredImage}`
                   : styles.featureTitle
               }
@@ -63,21 +66,17 @@ export default function Home(props: HomePageProps) {
           </Col>
         </Row>
         <Row>
-          {hasFeaturedImage && (
+          {imgSrc && (
             <Col className={styles.column} xs={12} lg={6}>
               <Image
-                src={props.page.acf.featured_image.sizes.medium_large}
-                alt={props.page.acf.featured_image.alt}
-                width={
-                  props.page.acf.featured_image.sizes['medium_large-width']
-                }
-                height={
-                  props.page.acf.featured_image.sizes['medium_large-height']
-                }
+                src={imgSrc}
+                alt={imgAlt}
+                width={imgWidth}
+                height={imgHeight}
               />
             </Col>
           )}
-          <Col className={styles.column} xs={12} lg={hasFeaturedImage ? 6 : 12}>
+          <Col className={styles.column} xs={12} lg={imgSrc ? 6 : 12}>
             <div
               className={styles.wpContent}
               dangerouslySetInnerHTML={{
