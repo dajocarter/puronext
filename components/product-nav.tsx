@@ -15,18 +15,18 @@ export default function ProductNav({
       <ul className={styles.navMenu}>
         {products.map((product) => (
           <li className={styles.navItem} key={product.id}>
-            <Link href={product.slug}>
-              <a
-                className={
-                  light ? `${styles.navLink} ${styles.light}` : styles.navLink
-                }
-              >
-                {product.title.rendered}
-              </a>
+            <Link
+              href={product.slug}
+              className={
+                light ? `${styles.navLink} ${styles.light}` : styles.navLink
+              }>
+
+              {product.title.rendered}
+
             </Link>
           </li>
         ))}
       </ul>
     </nav>
-  )
+  );
 }

@@ -39,10 +39,13 @@ export default function Footer({ navs }: FooterProps) {
                   (805) 579-0216
                 </a>{' '}
                 or{' '}
-                <Link href='/contact' passHref>
-                  <a className={`${links.buttonLink} ${links.ctaLink}`}>
+                <Link
+                  href='/contact'
+                  passHref
+                  className={`${links.buttonLink} ${links.ctaLink}`}>
+                  
                     Contact Us
-                  </a>
+                  
                 </Link>
               </p>
             </Col>
@@ -56,8 +59,8 @@ export default function Footer({ navs }: FooterProps) {
             <ul className={styles.menu}>
               {pagesMenuItems.map((item, index) => (
                 <li className={styles.menuItem} key={index}>
-                  <Link href={`/${item.object_slug}`} passHref>
-                    <a className={styles.menuLink}>{item.title}</a>
+                  <Link href={`/${item.object_slug}`} passHref className={styles.menuLink}>
+                    {item.title}
                   </Link>
                 </li>
               ))}
@@ -73,16 +76,17 @@ export default function Footer({ navs }: FooterProps) {
             <ul className={styles.menu}>
               {exploreMenuItems.map((item, index) => (
                 <li className={styles.menuItem} key={index}>
-                  <Link href={`/${item.object_slug}`} passHref>
-                    <a
-                      className={
-                        item.object_slug === 'rep-login'
-                          ? `${styles.menuLink} ${styles.alt}`
-                          : `${styles.menuLink}`
-                      }
-                    >
-                      {item.title}
-                    </a>
+                  <Link
+                    href={`/${item.object_slug}`}
+                    passHref
+                    className={
+                      item.object_slug === 'rep-login'
+                        ? `${styles.menuLink} ${styles.alt}`
+                        : `${styles.menuLink}`
+                    }>
+
+                    {item.title}
+
                   </Link>
                 </li>
               ))}
@@ -96,8 +100,8 @@ export default function Footer({ navs }: FooterProps) {
                 </h4>
               </Col>
               <Col sm={12} md={6} lg={5} xl={4}>
-                <Link href='/newsletter' passHref>
-                  <a className={styles.signupLink}>Sign up</a>
+                <Link href='/newsletter' passHref className={styles.signupLink}>
+                  Sign up
                 </Link>
               </Col>
             </Row>
@@ -108,5 +112,5 @@ export default function Footer({ navs }: FooterProps) {
         <p>&copy; Copyright 2018 - PUROFLUX. All rights reserved.</p>
       </div>
     </footer>
-  )
+  );
 }

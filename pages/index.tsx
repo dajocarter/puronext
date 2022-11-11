@@ -80,10 +80,10 @@ export default function Home(props: HomePageProps) {
                 __html: props.page.acf.featured_content
               }}
             />
-            <Link href='/gallery/'>
-              <a className={`${links.buttonLink} ${links.secondary}`}>
+            <Link href='/gallery/' className={`${links.buttonLink} ${links.secondary}`}>
+              
                 View Gallery
-              </a>
+              
             </Link>
           </Col>
         </Row>
@@ -92,7 +92,7 @@ export default function Home(props: HomePageProps) {
         <FlexibleContent layouts={props.page.acf.layouts} />
       )}
     </Layout>
-  )
+  );
 }
 
 export const getStaticProps: GetStaticProps = async (

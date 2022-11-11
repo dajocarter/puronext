@@ -30,15 +30,15 @@ export default function Header({ navs }: HeaderProps) {
           <Col xs={9} xl={3}>
             <div className={styles.navBrand}>
               <Link href='/'>
-                <a>
-                  <Image
-                    alt='Puroflux Corporation'
-                    src='/purofluxlogo_white_2x.png'
-                    height={42}
-                    width={200}
-                    layout='fixed'
-                  />
-                </a>
+
+                <Image
+                  alt='Puroflux Corporation'
+                  src='/purofluxlogo_white_2x.png'
+                  height={42}
+                  width={200}
+                  layout='fixed'
+                />
+
               </Link>
             </div>
           </Col>
@@ -166,5 +166,5 @@ export default function Header({ navs }: HeaderProps) {
         </Row>
       </Container>
     </header>
-  )
+  );
 }
