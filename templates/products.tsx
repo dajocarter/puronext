@@ -14,7 +14,7 @@ import TabContainer from 'react-bootstrap/TabContainer'
 import TabContent from 'react-bootstrap/TabContent'
 import TabPane from 'react-bootstrap/TabPane'
 import { PageProps } from '../pages/[slug]'
-import Image from 'next/image'
+import Image from "next/legacy/image";
 import { useRef, useState } from 'react'
 import links from '../styles/links.module.scss'
 import { FaArrowLeft, FaArrowRight, FaTimes } from 'react-icons/fa'

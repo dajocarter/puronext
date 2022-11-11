@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from "next/legacy/image";
 import styles from './split-content.module.scss'
 import links from '../../styles/links.module.scss'
 import { getImageData } from '../../data'

@@ -12,7 +12,7 @@ import Col from 'react-bootstrap/Col'
 import Carousel from 'react-bootstrap/Carousel'
 import { PageProps } from '../pages/[slug]'
 import { WordPressImage, WordPressPage } from '../data/types'
-import Image from 'next/image'
+import Image from "next/legacy/image";
 import { getImageData } from '../data'
 import PageSEO from '../components/seo'
 

@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { PageProps } from '../pages/[slug]'
 import ProductNav from '../components/product-nav'
-import Image from 'next/image'
+import Image from "next/legacy/image";
 import links from '../styles/links.module.scss'
 import {
   ProductPostType,

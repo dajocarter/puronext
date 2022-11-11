@@ -14,7 +14,7 @@ import {
 } from '../data/types'
 import { FaFilePdf } from 'react-icons/fa'
 import ProductNav from '../components/product-nav'
-import Image from 'next/image'
+import Image from "next/legacy/image";
 import Accordion, {
   AccordionContent,
   AccordionTitle

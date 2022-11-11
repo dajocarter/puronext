@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { ActiveLink } from './links'
-import Image from 'next/image'
+import Image from "next/legacy/image";
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'

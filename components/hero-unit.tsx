@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import Image from 'next/image'
+import Image from "next/legacy/image";
 import { formatURL } from '../data'
 import styles from './hero-unit.module.scss'
 import links from '../styles/links.module.scss'

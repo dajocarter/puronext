@@ -12,7 +12,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import styles from '../styles/index.module.scss'
-import Image from 'next/image'
+import Image from "next/legacy/image";
 import FlexibleContent, { Layouts } from '../components/flexible-content'
 import links from '../styles/links.module.scss'
 import Link from 'next/link'
