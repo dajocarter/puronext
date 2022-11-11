@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col'
 import styles from './footer.module.scss'
 import links from '../styles/links.module.scss'
 import { WordPressMenu } from '../data/types'
+import { lato } from '../pages/_app'
 
 export interface FooterProps {
   navs: {
@@ -21,7 +22,7 @@ export default function Footer({ navs }: FooterProps) {
   const exploreMenuItems = navs.explore.items
 
   return (
-    <footer className={styles.footerWrapper}>
+    <footer className={`${styles.footerWrapper} ${lato.className}`}>
       <div className={styles.callToAction}>
         <Container>
           <Row>

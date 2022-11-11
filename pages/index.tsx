@@ -1,5 +1,4 @@
 import type { GetStaticProps, GetStaticPropsContext } from 'next'
-import Head from 'next/head'
 import getLayoutData from '../data/layout'
 import Layout from '../components/layout'
 import { getPageData } from '../data/page'
@@ -20,6 +19,7 @@ import { PageProps } from './[slug]'
 import { WordPressImage, WordPressPage } from '../data/types'
 import { getImageData } from '../data'
 import PageSEO from '../components/seo'
+import { josefinSans } from './_app'
 
 interface HomePage extends WordPressPage {
   acf: HeroContentProps & {
@@ -54,8 +54,8 @@ export default function Home(props: HomePageProps) {
             <h2
               className={
                 imgSrc
-                  ? `${styles.featureTitle} ${styles.featuredImage}`
-                  : styles.featureTitle
+                  ? `${styles.featureTitle} ${styles.featuredImage} ${josefinSans.className}`
+                  : `${styles.featureTitle} ${josefinSans.className}`
               }
             >
               Featured
