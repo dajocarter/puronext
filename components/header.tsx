@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { ActiveLink } from './links'
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -35,9 +35,7 @@ export default function Header({ navs }: HeaderProps) {
                   alt='Puroflux Corporation'
                   src='/purofluxlogo_white_2x.png'
                   height={42}
-                  width={200}
-                  layout='fixed'
-                />
+                  width={200} />
 
               </Link>
             </div>

@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from "next/image";
 import styles from './split-content.module.scss'
 import links from '../../styles/links.module.scss'
 import { getImageData } from '../../data'
@@ -32,7 +32,7 @@ export default function SplitContent(props: SplitContentProps) {
     <div className={styles.row}>
       <div className={`${styles.side} ${styles.left}`}>
         {props.left_background_image && (
-          <Image alt={leftBgImg.imgAlt} src={leftBgImg.imgSrc} layout='fill' />
+          <Image alt={leftBgImg.imgAlt} src={leftBgImg.imgSrc} fill sizes="100vw" />
         )}
         <div className={`${styles.container} ${styles.left}`}>
           <h2>{props.left_title}</h2>
@@ -53,11 +53,7 @@ export default function SplitContent(props: SplitContentProps) {
       </div>
       <div className={`${styles.side} ${styles.right}`}>
         {props.right_background_image && (
-          <Image
-            alt={rightBgImg.imgAlt}
-            src={rightBgImg.imgSrc}
-            layout='fill'
-          />
+          <Image alt={rightBgImg.imgAlt} src={rightBgImg.imgSrc} fill sizes="100vw" />
         )}
         <div className={`${styles.container} ${styles.right}`}>
           <h2>{props.right_title}</h2>
@@ -77,5 +73,5 @@ export default function SplitContent(props: SplitContentProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { PageProps } from '../pages/[slug]'
 import ProductNav from '../components/product-nav'
-import Image from "next/legacy/image";
+import Image from "next/image";
 import links from '../styles/links.module.scss'
 import {
   ProductPostType,
@@ -73,7 +73,10 @@ export default function ProductTemplate(props: ProductPageProps) {
                 src={imgSrc}
                 height={(imgHeight * 250) / imgWidth}
                 width={250}
-              />
+                style={{
+                  maxWidth: "100%",
+                  height: "auto"
+                }} />
             )}
             {props.page.acf.files && (
               <Row style={{ justifyContent: 'center' }}>
@@ -115,7 +118,10 @@ export default function ProductTemplate(props: ProductPageProps) {
                     src={imgSrc}
                     height={175}
                     width={(imgWidth * 175) / imgHeight}
-                  />
+                    style={{
+                      maxWidth: "100%",
+                      height: "auto"
+                    }} />
                   {series.acf.description && (
                     <p className={styles.seriesDescrip}>
                       {series.acf.description}
@@ -128,7 +134,7 @@ export default function ProductTemplate(props: ProductPageProps) {
                     View Product
                   </a>
                 </Col>
-              )
+              );
             })}
           </Row>
         )}
@@ -143,5 +149,5 @@ export default function ProductTemplate(props: ProductPageProps) {
         </Row>
       </Container>
     </Layout>
-  )
+  );
 }

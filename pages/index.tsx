@@ -12,7 +12,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import styles from '../styles/index.module.scss'
-import Image from "next/legacy/image";
+import Image from "next/image";
 import FlexibleContent, { Layouts } from '../components/flexible-content'
 import links from '../styles/links.module.scss'
 import Link from 'next/link'
@@ -70,7 +70,10 @@ export default function Home(props: HomePageProps) {
                 alt={imgAlt}
                 width={imgWidth}
                 height={imgHeight}
-              />
+                style={{
+                  maxWidth: "100%",
+                  height: "auto"
+                }} />
             </Col>
           )}
           <Col className={styles.column} xs={12} lg={imgSrc ? 6 : 12}>

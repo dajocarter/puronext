@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { formatURL } from '../data'
 import styles from './hero-unit.module.scss'
 import links from '../styles/links.module.scss'
@@ -27,11 +27,11 @@ export function HeroUnit({
         }
         alt='background-image'
         src={imgSrc}
-        layout='fill'
-      />
+        fill
+        sizes="100vw" />
       <div className={styles.contentWrapper}>{children}</div>
     </div>
-  )
+  );
 }
 
 export interface HeroContentProps {

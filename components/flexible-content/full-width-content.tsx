@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from "next/image";
 import styles from './full-width-content.module.scss'
 import links from '../../styles/links.module.scss'
 import { getImageData } from '../../data'
@@ -29,7 +29,10 @@ export default function FullWidthContent(props: FullWidthContentProps) {
             src={imgSrc}
             height={imgHeight}
             width={imgWidth}
-          />
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
         )}
         <div
           className={styles.content}
@@ -46,5 +49,5 @@ export default function FullWidthContent(props: FullWidthContentProps) {
         )}
       </div>
     </div>
-  )
+  );
 }
