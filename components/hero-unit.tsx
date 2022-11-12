@@ -28,6 +28,7 @@ export function HeroUnit({
         alt='background-image'
         src={imgSrc}
         fill
+        priority
         sizes="100vw" />
       <div className={styles.contentWrapper}>{children}</div>
     </div>
