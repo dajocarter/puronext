@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Link from 'next/link'
-import { ActiveLink } from './links'
+import ActiveLink from './active-link'
 import Image from 'next/image'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -8,7 +8,6 @@ import Col from 'react-bootstrap/Col'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import styles from './header.module.scss'
 import { WordPressMenu } from '../data/types'
-import { josefinSans } from '../pages/_app'
 
 export interface HeaderProps {
   navs: {

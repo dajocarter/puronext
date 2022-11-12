@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Link, { LinkProps } from 'next/link'
-import styles from './links.module.scss'
+import styles from './active-link.module.scss'
 import { josefinSans } from '../pages/_app'
 
 type ActiveLinkProps = LinkProps & {
   text: string
   alt?: boolean
 }
-export const ActiveLink = ({ href, text, alt = false }: ActiveLinkProps) => {
+export default function ActiveLink({
+  href,
+  text,
+  alt = false
+}: ActiveLinkProps) {
   const { asPath, isReady } = useRouter()
   const [isActive, setActive] = useState(false)
 
