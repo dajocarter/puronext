@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Script from 'next/script'
 
 export default function PageSEO({
   slug,
@@ -57,6 +58,21 @@ export default function PageSEO({
 
       {/* Schema.org tags */}
       <script type='application/ld+json'>{JSON.stringify(schema)}</script>
+
+      {/* Global site tag (gtag.js) - Google Analytics */}
+      <Script
+        src='https://www.googletagmanager.com/gtag/js?id=G-GMSESPXRVJ'
+        strategy='afterInteractive'
+      />
+      <Script id='google-analytics' strategy='afterInteractive'>
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-GMSESPXRVJ');
+        `}
+      </Script>
     </Head>
   )
 }
