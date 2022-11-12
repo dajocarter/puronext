@@ -4,6 +4,7 @@ import getLayoutData from '../data/layout'
 import {
   getPageTemplateData,
   getProductsTemplateData,
+  getProductTemplateData,
   getSeriesTemplateData,
   getStoreLocatorTemplateData,
   getTypicalInstallationsTemplateData,
@@ -171,7 +172,7 @@ export const getStaticProps: GetStaticProps = async (
       pageData = await getPageTemplateData(slug)
       break
     case 'product':
-      pageData = await getProductsTemplateData(slug)
+      pageData = await getProductTemplateData(slug)
       break
     case 'series':
       pageData = await getSeriesTemplateData(slug)
