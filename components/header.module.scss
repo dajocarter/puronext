@@ -129,29 +129,6 @@
   }
 }
 
-.navLink {
-  color: white;
-  display: block;
-  font-size: 0.8rem;
-  font-style: italic;
-  text-decoration: none;
-  text-transform: uppercase;
-  padding: 24.5px 0;
-
-  &.alt {
-    color: $secondary-color;
-  }
-
-  &:hover,
-  &:focus {
-    color: $primary-color;
-  }
-}
-
-.active {
-  color: $primary-color;
-}
-
 .menuToggle {
   display: flex;
   align-items: center;

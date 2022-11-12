@@ -1,0 +1,21 @@
+@import '../styles/variables.module.scss';
+
+.navLink {
+  color: white;
+  display: block;
+  font-size: 0.8rem;
+  font-style: italic;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 24.5px 0;
+
+  &.alt {
+    color: $secondary-color;
+  }
+
+  &.active,
+  &:hover,
+  &:focus {
+    color: $primary-color;
+  }
+}

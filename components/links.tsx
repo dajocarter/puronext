@@ -1,59 +1,36 @@
-import React, { useState, useEffect, ReactElement, Children } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Link, { LinkProps } from 'next/link'
+import styles from './links.module.scss'
+import { josefinSans } from '../pages/_app'
 
 type ActiveLinkProps = LinkProps & {
-  children: ReactElement
-  activeClassName: string
+  text: string
+  alt?: boolean
 }
-export const ActiveLink = ({
-  children,
-  activeClassName = 'active',
-  ...props
-}: ActiveLinkProps) => {
+export const ActiveLink = ({ href, text, alt = false }: ActiveLinkProps) => {
   const { asPath, isReady } = useRouter()
-
-  const child = Children.only(children)
-  const childClassName = child.props.className || ''
-  const [className, setClassName] = useState(childClassName)
+  const [isActive, setActive] = useState(false)
 
   useEffect(() => {
-    // Check if the router fields are updated client-side
     if (isReady) {
-      // Dynamic routes will be matched via props.as
-      // Static routes will be matched via props.href
-      const linkPathname = new URL(
-        (props.as || props.href) as string,
-        location.href
-      ).pathname
-
       // Using URL().pathname to get rid of query and hash
+      const linkPathname = new URL(href as string, location.href).pathname
       const activePathname = new URL(asPath, location.href).pathname
 
-      const newClassName =
-        activePathname === linkPathname
-          ? `${childClassName} ${activeClassName}`.trim()
-          : childClassName
-
-      if (newClassName !== className) {
-        setClassName(newClassName)
+      if (activePathname === linkPathname) {
+        setActive(true)
       }
     }
-  }, [
-    asPath,
-    isReady,
-    props.as,
-    props.href,
-    activeClassName,
-    childClassName,
-    className
-  ])
+  }, [asPath, isReady, href])
+
+  let className = `${josefinSans.className} ${styles.navLink}`
+  if (alt) className += ` ${styles.alt}`
+  if (isActive) className += ` ${styles.active}`
 
   return (
-    <Link {...props} legacyBehavior>
-      {React.cloneElement(child, {
-        className: className || null
-      })}
+    <Link href={href} className={className}>
+      {text}
     </Link>
   )
 }
