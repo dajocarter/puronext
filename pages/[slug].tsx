@@ -1,7 +1,14 @@
 import { GetStaticProps, GetStaticPropsContext } from 'next'
 import { wpClient } from '../data'
 import getLayoutData from '../data/layout'
-import { getPageData } from '../data/page'
+import {
+  getPageTemplateData,
+  getProductsTemplateData,
+  getSeriesTemplateData,
+  getStoreLocatorTemplateData,
+  getTypicalInstallationsTemplateData,
+  getUnknownPageData
+} from '../data/page'
 import { HeaderProps } from '../components/header'
 import { FooterProps } from '../components/footer'
 import PageTemplate from '../templates/page'
@@ -17,7 +24,7 @@ import TypicalInstallationsPage, {
   TypicalInstallationsPageProps
 } from '../templates/typical-installations'
 import ProductsPageTemplate, { ProductsPageProps } from '../templates/products'
-import { WordPressPage } from '../data/types'
+import { PageTypes, PageTemplates, WordPressPage } from '../data/types'
 import ProductTemplate, { ProductPageProps } from '../templates/product'
 import SeriesTemplate, { SeriesPageProps } from '../templates/series'
 
@@ -120,13 +127,59 @@ export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
   const layoutData = await getLayoutData()
+  let pageData = {}
 
-  if (!context.params) return { notFound: true }
-  let slug =
-    (Array.isArray(context.params.slug)
-      ? context.params.slug[0]
-      : context.params.slug) || ''
-  const pageData = await getPageData(slug)
+  if (!context.params?.slug) return { notFound: true }
+  const slug = Array.isArray(context.params.slug)
+    ? context.params.slug[0]
+    : context.params.slug
+
+  // The only info we have about the page is the slug but page templates have different data requirements
+  // This endpoint returns an object where the key is the template and the value is an array of page slugs that use that template
+  const pagesByTemplate = await wpClient.pageSlugsByTemplate()
+
+  if (!pagesByTemplate) {
+    pageData = await getUnknownPageData(slug)
+    return {
+      props: {
+        ...layoutData,
+        ...pageData
+      }
+    }
+  }
+
+  const template = Object.keys(pagesByTemplate).find((template) =>
+    pagesByTemplate[template as PageTypes | PageTemplates].includes(slug)
+  )
+
+  switch (template as PageTypes | PageTemplates) {
+    case 'page_products.php':
+      pageData = await getProductsTemplateData(slug)
+      break
+    case 'page_store-locator.php':
+      pageData = await getStoreLocatorTemplateData(slug)
+      break
+    case 'page_typical-installations.php':
+      pageData = await getTypicalInstallationsTemplateData(slug)
+      break
+    case 'page':
+    case 'page_contact.php':
+    case 'page_form.php':
+    case 'page_gallery.php':
+    case 'page_library.php':
+    case 'page_videos.php':
+      pageData = await getPageTemplateData(slug)
+      break
+    case 'product':
+      pageData = await getProductsTemplateData(slug)
+      break
+    case 'series':
+      pageData = await getSeriesTemplateData(slug)
+      break
+    default:
+      // if the page slug doesn't return a template then it is an invalid slug
+      return { notFound: true }
+  }
 
   return {
     props: {
