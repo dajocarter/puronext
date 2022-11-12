@@ -1,7 +1,7 @@
 import type { GetStaticProps, GetStaticPropsContext } from 'next'
 import getLayoutData from '../data/layout'
 import Layout from '../components/layout'
-import { getPageData } from '../data/page'
+import { getPageTemplateData } from '../data/page'
 import {
   HeroUnit,
   HeroContent,
@@ -104,7 +104,7 @@ export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
   const layoutData = await getLayoutData()
-  const pageData = await getPageData('home')
+  const pageData = await getPageTemplateData('home')
   return {
     props: {
       ...layoutData,
