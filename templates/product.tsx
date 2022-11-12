@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Layout from '../components/layout'
 import styles from './product.module.scss'
 import Container from 'react-bootstrap/Container'

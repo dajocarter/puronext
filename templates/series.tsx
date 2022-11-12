@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import { HeroUnit } from '../components/hero-unit'
 import Layout from '../components/layout'
 import styles from './series.module.scss'
