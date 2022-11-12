@@ -2,6 +2,7 @@ import WpApiClient, { DefaultEndpoint } from 'wordpress-api-client'
 import {
   FeaturedMedia,
   ModelPostType,
+  PageSlugsByTemplate,
   ProductPostType,
   RepPostType,
   SeriesPostType,
@@ -20,6 +21,8 @@ const PRODUCTS_POST_TYPE_PATH = 'wp/v2/products'
 const REPS_POST_TYPE_PATH = 'wp/v2/reps'
 const SERIES_POST_TYPE_PATH = 'wp/v2/series'
 const STATES_POST_TYPE_PATH = 'wp/v2/states'
+
+const PAGE_SLUGS_PATH = 'puroflux/v1/page-slugs'
 
 class WpClient extends WpApiClient {
   constructor() {
@@ -44,6 +47,7 @@ class WpClient extends WpApiClient {
   footerPagesMenu = this.createEndpointCustomGet<WordPressMenu>(
     FOOTER_PAGES_MENU_PATH
   )
+  pageSlugsByTemplate = this.createEndpointCustomGet<PageSlugsByTemplate>(PAGE_SLUGS_PATH)
 
   public model(): DefaultEndpoint<ModelPostType> {
     return this.addPostType<ModelPostType>(MODELS_POST_TYPE_PATH)

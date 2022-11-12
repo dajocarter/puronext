@@ -226,3 +226,9 @@ export interface ModelPostType extends WordPressPage {
     model_files: null | { title: string; file: WordPressFile }[]
   }
 }
+
+export type PageTypes = 'page' | 'product' | 'series'
+export type PageTemplates = 'page_form.php' | 'page_products.php' | 'page_library.php' | 'page_gallery.php' | 'page_videos.php' | 'page_typical-installations.php' | 'page_contact.php' | 'page_store-locator.php'
+export type PageSlugsByTemplate = {
+  [K in PageTypes | PageTemplates]: string[]
+}
