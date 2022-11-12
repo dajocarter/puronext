@@ -14,7 +14,7 @@ import TabContainer from 'react-bootstrap/TabContainer'
 import TabContent from 'react-bootstrap/TabContent'
 import TabPane from 'react-bootstrap/TabPane'
 import { PageProps } from '../pages/[slug]'
-import Image from "next/image";
+import Image from 'next/image'
 import { useRef, useState } from 'react'
 import links from '../styles/links.module.scss'
 import { FaArrowLeft, FaArrowRight, FaTimes } from 'react-icons/fa'
@@ -112,12 +112,13 @@ export default function ProductsPageTemplate(props: ProductsPageProps) {
                             height={imgHeight}
                             width={imgWidth}
                             style={{
-                              maxWidth: "100%",
-                              height: "auto"
-                            }} />
+                              maxWidth: '100%',
+                              height: 'auto'
+                            }}
+                          />
                         </Nav.Link>
                       </Nav.Item>
-                    );
+                    )
                   })}
                   <Nav.Item>
                     <Nav.Link
@@ -130,9 +131,10 @@ export default function ProductsPageTemplate(props: ProductsPageProps) {
                         height={addlItemImage.imgHeight}
                         width={addlItemImage.imgWidth}
                         style={{
-                          maxWidth: "100%",
-                          height: "auto"
-                        }} />
+                          maxWidth: '100%',
+                          height: 'auto'
+                        }}
+                      />
                     </Nav.Link>
                   </Nav.Item>
                 </Nav>
@@ -169,7 +171,7 @@ export default function ProductsPageTemplate(props: ProductsPageProps) {
         )}
       </Container>
     </Layout>
-  );
+  )
 }
 
 type PaneNode = ProductPostType | ProductsPageProps['addlItem']
@@ -203,9 +205,10 @@ function SelectablePane({
           height={imgHeight}
           width={imgWidth}
           style={{
-            maxWidth: "100%",
-            height: "auto"
-          }} />
+            maxWidth: '100%',
+            height: 'auto'
+          }}
+        />
         <div>
           <h2>{node.title.rendered}</h2>
           {node.type === 'product' && node.acf.excerpt && (
@@ -238,5 +241,5 @@ function SelectablePane({
         </div>
       </div>
     </TabPane>
-  );
+  )
 }

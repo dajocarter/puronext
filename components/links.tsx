@@ -55,5 +55,5 @@ export const ActiveLink = ({
         className: className || null
       })}
     </Link>
-  );
+  )
 }

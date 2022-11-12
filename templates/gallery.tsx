@@ -12,7 +12,7 @@ import Col from 'react-bootstrap/Col'
 import Carousel from 'react-bootstrap/Carousel'
 import { PageProps } from '../pages/[slug]'
 import { WordPressImage, WordPressPage } from '../data/types'
-import Image from "next/image";
+import Image from 'next/image'
 import { getImageData } from '../data'
 import PageSEO from '../components/seo'
 
@@ -53,17 +53,18 @@ export default function GalleryPageTemplate(props: GalleryPageProps) {
                         src={imgSrc}
                         height={imgHeight}
                         width={imgWidth}
-                        sizes="100vw"
+                        sizes='100vw'
                         style={{
-                          width: "100%",
-                          height: "auto"
-                        }} />
+                          width: '100%',
+                          height: 'auto'
+                        }}
+                      />
                       <Carousel.Caption>
                         <h3>{img.title}</h3>
                         {img.caption && <p>{img.caption}</p>}
                       </Carousel.Caption>
                     </Carousel.Item>
-                  );
+                  )
                 })}
               </Carousel>
             </Col>
@@ -71,5 +72,5 @@ export default function GalleryPageTemplate(props: GalleryPageProps) {
         </Container>
       )}
     </Layout>
-  );
+  )
 }

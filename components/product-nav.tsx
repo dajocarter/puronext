@@ -19,14 +19,13 @@ export default function ProductNav({
               href={product.slug}
               className={
                 light ? `${styles.navLink} ${styles.light}` : styles.navLink
-              }>
-
+              }
+            >
               {product.title.rendered}
-
             </Link>
           </li>
         ))}
       </ul>
     </nav>
-  );
+  )
 }

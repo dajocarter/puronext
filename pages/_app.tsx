@@ -6,8 +6,8 @@ import '../styles/global.scss'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../styles/variables.module.scss'
 
-export const lato = Lato({ weight: ["400", "700"] })
-export const josefinSans = Josefin_Sans({ weight: ["400", "700"] })
+export const lato = Lato({ weight: ['400', '700'] })
+export const josefinSans = Josefin_Sans({ weight: ['400', '700'] })
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode

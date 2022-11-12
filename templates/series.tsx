@@ -14,7 +14,7 @@ import {
 } from '../data/types'
 import { FaFilePdf } from 'react-icons/fa'
 import ProductNav from '../components/product-nav'
-import Image from "next/image";
+import Image from 'next/image'
 import Accordion, {
   AccordionContent,
   AccordionTitle
@@ -92,11 +92,12 @@ export default function SeriesTemplate(props: SeriesPageProps) {
               src={imgSrc}
               height={imgHeight}
               width={imgWidth}
-              sizes="100vw"
+              sizes='100vw'
               style={{
-                width: "100%",
-                height: "auto"
-              }} />
+                width: '100%',
+                height: 'auto'
+              }}
+            />
           </Col>
           <Col sm={12} md={6}>
             <h2 className={styles.featuredTitle}>Details</h2>
@@ -240,7 +241,7 @@ export default function SeriesTemplate(props: SeriesPageProps) {
         )}
       </Container>
     </Layout>
-  );
+  )
 }
 
 const DownloadCol = ({

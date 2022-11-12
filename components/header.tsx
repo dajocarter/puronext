@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { ActiveLink } from './links'
-import Image from "next/image";
+import Image from 'next/image'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import styles from './header.module.scss'
 import { WordPressMenu } from '../data/types'
-import { josefinSans } from '../pages/_app';
+import { josefinSans } from '../pages/_app'
 
 export interface HeaderProps {
   navs: {
@@ -31,13 +31,12 @@ export default function Header({ navs }: HeaderProps) {
           <Col xs={9} xl={3}>
             <div className={styles.navBrand}>
               <Link href='/'>
-
                 <Image
                   alt='Puroflux Corporation'
                   src='/purofluxlogo_white_2x.png'
                   height={42}
-                  width={200} />
-
+                  width={200}
+                />
               </Link>
             </div>
           </Col>
@@ -78,7 +77,11 @@ export default function Header({ navs }: HeaderProps) {
                               href={`/${child.object_slug}`}
                               activeClassName={styles.active}
                             >
-                              <a className={`${styles.navLink} ${josefinSans.className}`}>{child.title}</a>
+                              <a
+                                className={`${styles.navLink} ${josefinSans.className}`}
+                              >
+                                {child.title}
+                              </a>
                             </ActiveLink>
                             {child.children && (
                               <ul
@@ -93,7 +96,9 @@ export default function Header({ navs }: HeaderProps) {
                                       href={`/${grandchild.object_slug}`}
                                       activeClassName={styles.active}
                                     >
-                                      <a className={`${styles.navLink} ${josefinSans.className}`}>
+                                      <a
+                                        className={`${styles.navLink} ${josefinSans.className}`}
+                                      >
                                         {grandchild.title}
                                       </a>
                                     </ActiveLink>
@@ -165,5 +170,5 @@ export default function Header({ navs }: HeaderProps) {
         </Row>
       </Container>
     </header>
-  );
+  )
 }

@@ -11,7 +11,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import styles from '../styles/index.module.scss'
-import Image from "next/image";
+import Image from 'next/image'
 import FlexibleContent, { Layouts } from '../components/flexible-content'
 import links from '../styles/links.module.scss'
 import Link from 'next/link'
@@ -71,9 +71,10 @@ export default function Home(props: HomePageProps) {
                 width={imgWidth}
                 height={imgHeight}
                 style={{
-                  maxWidth: "100%",
-                  height: "auto"
-                }} />
+                  maxWidth: '100%',
+                  height: 'auto'
+                }}
+              />
             </Col>
           )}
           <Col className={styles.column} xs={12} lg={imgSrc ? 6 : 12}>
@@ -83,10 +84,11 @@ export default function Home(props: HomePageProps) {
                 __html: props.page.acf.featured_content
               }}
             />
-            <Link href='/gallery/' className={`${links.buttonLink} ${links.secondary}`}>
-              
-                View Gallery
-              
+            <Link
+              href='/gallery/'
+              className={`${links.buttonLink} ${links.secondary}`}
+            >
+              View Gallery
             </Link>
           </Col>
         </Row>
@@ -95,7 +97,7 @@ export default function Home(props: HomePageProps) {
         <FlexibleContent layouts={props.page.acf.layouts} />
       )}
     </Layout>
-  );
+  )
 }
 
 export const getStaticProps: GetStaticProps = async (

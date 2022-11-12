@@ -43,10 +43,9 @@ export default function Footer({ navs }: FooterProps) {
                 <Link
                   href='/contact'
                   passHref
-                  className={`${links.buttonLink} ${links.ctaLink}`}>
-                  
-                    Contact Us
-                  
+                  className={`${links.buttonLink} ${links.ctaLink}`}
+                >
+                  Contact Us
                 </Link>
               </p>
             </Col>
@@ -60,7 +59,11 @@ export default function Footer({ navs }: FooterProps) {
             <ul className={styles.menu}>
               {pagesMenuItems.map((item, index) => (
                 <li className={styles.menuItem} key={index}>
-                  <Link href={`/${item.object_slug}`} passHref className={styles.menuLink}>
+                  <Link
+                    href={`/${item.object_slug}`}
+                    passHref
+                    className={styles.menuLink}
+                  >
                     {item.title}
                   </Link>
                 </li>
@@ -84,10 +87,9 @@ export default function Footer({ navs }: FooterProps) {
                       item.object_slug === 'rep-login'
                         ? `${styles.menuLink} ${styles.alt}`
                         : `${styles.menuLink}`
-                    }>
-
+                    }
+                  >
                     {item.title}
-
                   </Link>
                 </li>
               ))}
@@ -113,5 +115,5 @@ export default function Footer({ navs }: FooterProps) {
         <p>&copy; Copyright 2018 - PUROFLUX. All rights reserved.</p>
       </div>
     </footer>
-  );
+  )
 }
