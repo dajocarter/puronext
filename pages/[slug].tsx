@@ -120,7 +120,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false
+    fallback: 'blocking'
   }
 }
 
@@ -145,7 +145,8 @@ export const getStaticProps: GetStaticProps = async (
       props: {
         ...layoutData,
         ...pageData
-      }
+      },
+      revalidate: 60 * 3
     }
   }
 
@@ -186,6 +187,7 @@ export const getStaticProps: GetStaticProps = async (
     props: {
       ...layoutData,
       ...pageData
-    }
+    },
+    revalidate: 60 * 3
   }
 }
