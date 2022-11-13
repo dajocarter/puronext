@@ -13,9 +13,10 @@ export default async function revalidationHandler(
 
   try {
     const {
-      post: { post_name: slug }
+      post: { post_name }
     } = req.body
-    await res.revalidate(`/${slug}`)
+    const path = post_name === 'home' ? '/' : `/${post_name}`
+    await res.revalidate(path)
     return res.json({ revalidated: true })
   } catch (err) {
     // If there was an error, Next.js will continue
