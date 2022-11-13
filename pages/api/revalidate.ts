@@ -10,14 +10,11 @@ export default async function revalidationHandler(
   if (req.query.secret !== process.env.WORDPRESS_TOKEN) {
     return res.status(401).json({ message: 'Invalid token' })
   }
-  console.log(req.query)
-  console.log(req.body)
 
   try {
-    const body = JSON.parse(req.body)
     const {
       post: { post_name: slug }
-    } = body
+    } = req.body
     await res.revalidate(`/${slug}`)
     return res.json({ revalidated: true })
   } catch (err) {
