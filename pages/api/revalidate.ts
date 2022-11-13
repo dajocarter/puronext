@@ -14,9 +14,10 @@ export default async function revalidationHandler(
   console.log(req.body)
 
   try {
+    const body = JSON.parse(req.body)
     const {
       post: { post_name: slug }
-    } = req.body
+    } = body
     await res.revalidate(`/${slug}`)
     return res.json({ revalidated: true })
   } catch (err) {
