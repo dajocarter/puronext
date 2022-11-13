@@ -109,7 +109,6 @@ export const getStaticProps: GetStaticProps = async (
     props: {
       ...layoutData,
       ...pageData
-    },
-    revalidate: 60 * 3
+    }
   }
 }
