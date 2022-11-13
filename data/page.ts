@@ -232,7 +232,7 @@ export async function getPageTemplateData(slug: string) {
 export async function getProductTemplateData(slug: string) {
   const [heroImg] = await getHeroImage(slug)
 
-  const products = await wpClient.product().find(queryBySlug(slug))
+  const products = await wpClient.product().find()
   const product = products.find((p) => p && p.slug === slug)
 
   // we need more info about the series than what the ACF data provides so we have to fetch :(
