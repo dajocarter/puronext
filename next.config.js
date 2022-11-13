@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['wordpress.puroflux.com']
+    domains: ['wordpress.puroflux.com', 'localhost']
   },
   experimental: {
     fontLoaders: [
