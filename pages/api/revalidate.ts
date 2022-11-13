@@ -7,7 +7,7 @@ export default async function revalidationHandler(
   res: NextApiResponse
 ) {
   // Check for secret to confirm this is a valid request
-  if (req.query.secret !== process.env.WORDPRESS_TOKEN) {
+  if (req.query.secret !== process.env.REVALIDATION_TOKEN) {
     return res.status(401).json({ message: 'Invalid token' })
   }
 
