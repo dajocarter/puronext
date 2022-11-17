@@ -1,4 +1,4 @@
-import { WordPressFile } from '../data/types'
+import { WordPressFile } from '../lib/data/types'
 
 function FileOutput({
   title,

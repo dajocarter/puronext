@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import styles from './store-locator.module.scss'
-import { formatPhoneNumber } from '../data'
+import { formatPhoneNumber } from '../lib/data'
 import Layout from '../components/layout'
 import { HeroContent, HeroUnit } from '../components/hero-unit'
 import Accordion, {
@@ -11,7 +11,7 @@ import Accordion, {
   AccordionTitle
 } from '../components/accordion'
 import { PageProps } from '../pages/[slug]'
-import { RepPostType, StatePostType, WordPressPage } from '../data/types'
+import { RepPostType, StatePostType, WordPressPage } from '../lib/data/types'
 import PageSEO from '../components/seo'
 
 const groupRepsByState = (reps: RepPostType[], states: StatePostType[]) => {

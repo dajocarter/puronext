@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col'
 
 import styles from './footer.module.scss'
 import links from '../styles/links.module.scss'
-import { WordPressMenu } from '../data/types'
+import { WordPressMenu } from '../lib/data/types'
 import { lato } from '../pages/_app'
 
 export interface FooterProps {

@@ -10,7 +10,7 @@ import {
   ProductPostType,
   SeriesPostType,
   WordPressFile
-} from '../data/types'
+} from '../lib/data/types'
 import { FaFilePdf } from 'react-icons/fa'
 import ProductNav from '../components/product-nav'
 import Image from 'next/image'
@@ -19,7 +19,7 @@ import Accordion, {
   AccordionTitle
 } from '../components/accordion'
 import links from '../styles/links.module.scss'
-import { getImageData } from '../data'
+import { getImageData } from '../lib/data'
 import PageSEO from '../components/seo'
 
 export interface SeriesPageProps extends PageProps {

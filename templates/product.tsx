@@ -13,9 +13,9 @@ import {
   WordPressFile,
   WordPressImage,
   WordPressPage
-} from '../data/types'
+} from '../lib/data/types'
 import { HeroContentProps } from '../components/hero-unit'
-import { getImageData } from '../data'
+import { getImageData } from '../lib/data'
 import PageSEO from '../components/seo'
 
 interface ProductPageACF extends HeroContentProps {

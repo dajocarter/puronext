@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import styles from './header.module.scss'
-import { WordPressMenu } from '../data/types'
+import { WordPressMenu } from '../lib/data/types'
 
 export interface HeaderProps {
   navs: {

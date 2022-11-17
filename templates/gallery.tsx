@@ -10,9 +10,9 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Carousel from 'react-bootstrap/Carousel'
 import { PageProps } from '../pages/[slug]'
-import { WordPressImage, WordPressPage } from '../data/types'
+import { WordPressImage, WordPressPage } from '../lib/data/types'
 import Image from 'next/image'
-import { getImageData } from '../data'
+import { getImageData } from '../lib/data'
 import PageSEO from '../components/seo'
 
 interface GalleryPage extends WordPressPage {
