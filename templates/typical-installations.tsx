@@ -9,7 +9,7 @@ import Accordion, {
   AccordionContent,
   AccordionTitle
 } from '../components/accordion'
-import { SeriesPostType, WordPressPage } from '../data/types'
+import { SeriesPostType, WordPressPage } from '../lib/data/types'
 import ModelInstallationFiles from '../components/model-installation-files'
 import PageSEO from '../components/seo'
 

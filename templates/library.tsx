@@ -10,7 +10,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { Fragment } from 'react'
 import { PageProps } from '../pages/[slug]'
-import { WordPressPage } from '../data/types'
+import { WordPressPage } from '../lib/data/types'
 import PageSEO from '../components/seo'
 
 interface LibraryPage extends WordPressPage {

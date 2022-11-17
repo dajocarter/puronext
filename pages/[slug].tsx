@@ -1,6 +1,6 @@
 import { GetStaticProps, GetStaticPropsContext } from 'next'
-import { wpClient } from '../data'
-import getLayoutData from '../data/layout'
+import { wpClient } from '../lib/data'
+import getLayoutData from '../lib/data/layout'
 import {
   getPageTemplateData,
   getProductsTemplateData,
@@ -9,7 +9,7 @@ import {
   getStoreLocatorTemplateData,
   getTypicalInstallationsTemplateData,
   getUnknownPageData
-} from '../data/page'
+} from '../lib/data/page'
 import { HeaderProps } from '../components/header'
 import { FooterProps } from '../components/footer'
 import PageTemplate from '../templates/page'
@@ -25,7 +25,7 @@ import TypicalInstallationsPage, {
   TypicalInstallationsPageProps
 } from '../templates/typical-installations'
 import ProductsPageTemplate, { ProductsPageProps } from '../templates/products'
-import { PageTypes, PageTemplates, WordPressPage } from '../data/types'
+import { PageTypes, PageTemplates, WordPressPage } from '../lib/data/types'
 import ProductTemplate, { ProductPageProps } from '../templates/product'
 import SeriesTemplate, { SeriesPageProps } from '../templates/series'
 

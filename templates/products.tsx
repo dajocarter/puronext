@@ -22,8 +22,8 @@ import {
   EmbeddedFeaturedMedia,
   ProductPostType,
   WordPressPage
-} from '../data/types'
-import { getImageData } from '../data'
+} from '../lib/data/types'
+import { getImageData } from '../lib/data'
 import PageSEO from '../components/seo'
 
 interface ProductsPage extends WordPressPage {

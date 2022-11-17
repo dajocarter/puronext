@@ -1,7 +1,7 @@
 import type { GetStaticProps, GetStaticPropsContext } from 'next'
-import getLayoutData from '../data/layout'
+import getLayoutData from '../lib/data/layout'
 import Layout from '../components/layout'
-import { getPageTemplateData } from '../data/page'
+import { getPageTemplateData } from '../lib/data/page'
 import {
   HeroUnit,
   HeroContent,
@@ -16,8 +16,8 @@ import FlexibleContent, { Layouts } from '../components/flexible-content'
 import links from '../styles/links.module.scss'
 import Link from 'next/link'
 import { PageProps } from './[slug]'
-import { WordPressImage, WordPressPage } from '../data/types'
-import { getImageData } from '../data'
+import { WordPressImage, WordPressPage } from '../lib/data/types'
+import { getImageData } from '../lib/data'
 import PageSEO from '../components/seo'
 import { josefinSans } from './_app'
 

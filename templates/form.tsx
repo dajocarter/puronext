@@ -12,7 +12,7 @@ import ContactForm from '../components/forms/contact'
 import NewsletterForm from '../components/forms/newsletter'
 import Request3dForm from '../components/forms/request-3d'
 import { PageProps } from '../pages/[slug]'
-import { WordPressPage } from '../data/types'
+import { WordPressPage } from '../lib/data/types'
 import PageSEO from '../components/seo'
 
 interface FormPage extends WordPressPage {

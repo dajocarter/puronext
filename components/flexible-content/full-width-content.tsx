@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import styles from './full-width-content.module.scss'
 import links from '../../styles/links.module.scss'
-import { getImageData } from '../../data'
-import { WordPressImage } from '../../data/types'
+import { getImageData } from '../../lib/data'
+import { WordPressImage } from '../../lib/data/types'
 
 export interface FullWidthContentProps {
   acf_fc_layout: 'full_width_content'

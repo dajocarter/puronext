@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import styles from './product-nav.module.scss'
-import { ProductPostType } from '../data/types'
+import { ProductPostType } from '../lib/data/types'
 
 export default function ProductNav({
   products,
