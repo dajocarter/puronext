@@ -8,17 +8,22 @@ export default async function revalidationHandler(
 ) {
   // Check for secret to confirm this is a valid request
   if (req.query.secret !== process.env.REVALIDATION_TOKEN) {
+    console.error('SECRET DID NOT MATCH REVALIDATION TOKEN')
     return res.status(401).json({ message: 'Invalid token' })
   }
 
+  const {
+    post: { post_name }
+  } = req.body
+  const path = post_name === 'home' ? '/' : `/${post_name}`
+  console.info(`ATTEMPTING TO REVALIDATE: ${path}`)
+
   try {
-    const {
-      post: { post_name }
-    } = req.body
-    const path = post_name === 'home' ? '/' : `/${post_name}`
     await res.revalidate(path)
+    console.info(`${path} REVALIDATED`)
     return res.json({ revalidated: true })
   } catch (err) {
+    console.error(`ERROR REVALIDATING ${path}`, err)
     // If there was an error, Next.js will continue
     // to show the last successfully generated page
     return res.status(500).send('Error revalidating')
