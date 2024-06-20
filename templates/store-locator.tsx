@@ -14,44 +14,72 @@ import { PageProps } from '../pages/[slug]'
 import { RepPostType, StatePostType, WordPressPage } from '../lib/data/types'
 import PageSEO from '../components/seo'
 
-const groupRepsByState = (reps: RepPostType[], states: StatePostType[]) => {
-  const statesExtracted = reps.reduce(
-    (acc: RepPostType[], rep: RepPostType) => {
-      const newNode = Object.assign({}, rep)
-      if (rep.states) {
-        const state = states.find((state) => state.id === rep.states[0])
-        newNode.state = state?.name || ''
-      } else {
-        newNode.state = ''
+const groupRepsByCountrySortedByState = (
+  reps: RepPostType[],
+  states: StatePostType[]
+) => {
+  const { internationalReps, domesticReps } = reps.reduce(
+    (
+      acc: {
+        internationalReps: { [key: string]: RepPostType[] }
+        domesticReps: { [key: string]: RepPostType[] }
+      },
+      rep: RepPostType
+    ) => {
+      // Create a shallow copy of the rep
+      const newNode = { ...rep }
+
+      // Find the state name or use an empty string if not found
+      const state = rep.states
+        ? states.find((state) => state.id === rep.states[0])
+        : null
+      newNode.state = state ? state.name : ''
+
+      // Determine if the state is international
+      const isInternational =
+        state &&
+        state.acf &&
+        !Array.isArray(state.acf) &&
+        state.acf.international
+
+      // Choose the appropriate object to store the rep
+      const target = isInternational ? acc.internationalReps : acc.domesticReps
+      const key = newNode.state
+
+      // Initialize the state group if it doesn't exist
+      if (!target[key]) {
+        target[key] = []
       }
-      acc.push(newNode)
+
+      // Add the rep to the appropriate state group
+      target[key].push(newNode)
+
       return acc
     },
-    []
+    { internationalReps: {}, domesticReps: {} }
   )
-  const sortedReps = statesExtracted.sort((a, b) => {
-    let stateA = a.state || ''
-    let stateB = b.state || ''
-    if (stateA > stateB) {
-      return 1
-    } else if (stateA < stateB) {
-      return -1
-    } else {
-      return 0
-    }
-  })
-  const repsByState = sortedReps.reduce(
-    (acc: { [key: string]: RepPostType[] }, node: RepPostType) => {
-      var key = node.state || ''
-      if (!acc[key]) {
-        acc[key] = []
-      }
-      acc[key].push(node)
-      return acc
-    },
-    {}
-  )
-  const html = Object.entries(repsByState).map(([state, firms], i) => (
+
+  // Function to sort an object by its keys
+  const sortRepsByState = (obj: { [key: string]: RepPostType[] }) =>
+    Object.keys(obj)
+      .sort((a, b) => a.localeCompare(b))
+      .reduce((sortedAcc: { [key: string]: RepPostType[] }, key: string) => {
+        sortedAcc[key] = obj[key]
+        return sortedAcc
+      }, {})
+
+  // Sort both objects
+  const sortedInternationalReps = sortRepsByState(internationalReps)
+  const sortedDomesticReps = sortRepsByState(domesticReps)
+
+  return {
+    internationalReps: sortedInternationalReps,
+    domesticReps: sortedDomesticReps
+  }
+}
+
+const renderRepsAccordion = (reps: { [key: string]: RepPostType[] }) => {
+  return Object.entries(reps).map(([state, firms], i) => (
     <Fragment key={i}>
       <AccordionTitle accordionIndex={i}>{state}</AccordionTitle>
       <AccordionContent accordionIndex={i}>
@@ -110,7 +138,6 @@ const groupRepsByState = (reps: RepPostType[], states: StatePostType[]) => {
       </AccordionContent>
     </Fragment>
   ))
-  return html
 }
 
 interface StoreLocatorPage extends WordPressPage {
@@ -124,7 +151,10 @@ export interface StoreLocatorProps extends PageProps {
 }
 
 export default function StoreLocatorTemplate(props: StoreLocatorProps) {
-  const sortedReps = groupRepsByState(props.reps, props.states)
+  const { internationalReps, domesticReps } = groupRepsByCountrySortedByState(
+    props.reps,
+    props.states
+  )
   return (
     <Layout {...props}>
       <PageSEO title={props.page.title.rendered} slug={props.page.slug} />
@@ -148,12 +178,21 @@ export default function StoreLocatorTemplate(props: StoreLocatorProps) {
             </Col>
           </Row>
         )}
-        {sortedReps && (
-          <Row>
-            <Col>
-              <Accordion>{sortedReps}</Accordion>
-            </Col>
-          </Row>
+        <h2 className='mb-3'>Domestic</h2>
+        <Row>
+          <Col>
+            <Accordion>{renderRepsAccordion(domesticReps)}</Accordion>
+          </Col>
+        </Row>
+        {Object.entries(internationalReps).length > 0 && (
+          <Fragment>
+            <h2 className='mt-5 mb-3'>International</h2>
+            <Row>
+              <Col>
+                <Accordion>{renderRepsAccordion(internationalReps)}</Accordion>
+              </Col>
+            </Row>
+          </Fragment>
         )}
       </Container>
     </Layout>
