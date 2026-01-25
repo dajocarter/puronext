@@ -2,8 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['wordpress.puroflux.com', 'localhost']
-  },
+    remotePatterns: [
+      {
+        hostname: 'wordpress.puroflux.com'
+      }
+    ]
   }
 }
 
