@@ -26,7 +26,7 @@ const PAGE_SLUGS_PATH = 'puroflux/v1/page-slugs'
 
 class WpClient extends WpApiClient {
   constructor() {
-    super(`${process.env.NEXT_PUBLIC_SOURCE_URL}`, {
+    super(`https://${process.env.NEXT_PUBLIC_BASE_URL}`, {
       auth: {
         type: 'basic',
         username: `${process.env.NEXT_PUBLIC_WP_USERNAME}`,
@@ -47,7 +47,8 @@ class WpClient extends WpApiClient {
   footerPagesMenu = this.createEndpointCustomGet<WordPressMenu>(
     FOOTER_PAGES_MENU_PATH
   )
-  pageSlugsByTemplate = this.createEndpointCustomGet<PageSlugsByTemplate>(PAGE_SLUGS_PATH)
+  pageSlugsByTemplate =
+    this.createEndpointCustomGet<PageSlugsByTemplate>(PAGE_SLUGS_PATH)
 
   public model(): DefaultEndpoint<ModelPostType> {
     return this.addPostType<ModelPostType>(MODELS_POST_TYPE_PATH)
