@@ -3,7 +3,7 @@ import { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
-import { Lato, Josefin_Sans } from '@next/font/google'
+import { Lato, Josefin_Sans } from 'next/font/google'
 
 import * as gtag from '../lib/gtag'
 
@@ -11,8 +11,11 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import '../styles/global.scss'
 import '../styles/variables.module.scss'
 
-export const lato = Lato({ weight: ['400', '700'] })
-export const josefinSans = Josefin_Sans({ weight: ['400', '700'] })
+export const lato = Lato({ weight: ['400', '700'], subsets: ['latin'] })
+export const josefinSans = Josefin_Sans({
+  weight: ['400', '700'],
+  subsets: ['latin']
+})
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
