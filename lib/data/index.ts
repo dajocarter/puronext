@@ -136,22 +136,22 @@ export function getImageData(imageData: WordPressImage | FeaturedMedia | null) {
       }
     }
     if ('media_details' in imageData) {
-      const mediaDetailsHierarchy = 'full' || 'medium'
-      imgSrc =
-        imageData.media_details.sizes[mediaDetailsHierarchy]?.source_url || ''
-      imgHeight =
-        imageData.media_details.sizes[mediaDetailsHierarchy]?.height ||
-        imageData.media_details.height
-      imgWidth =
-        imageData.media_details.sizes[mediaDetailsHierarchy]?.width ||
-        imageData.media_details.width
+      const size =
+        imageData.media_details.sizes.full ||
+        imageData.media_details.sizes.medium
+      imgSrc = size?.source_url || ''
+      imgHeight = size?.height || imageData.media_details.height
+      imgWidth = size?.width || imageData.media_details.width
     } else if ('sizes' in imageData) {
-      const sizesHierarchy = 'large' || 'medium_large'
-      const heightHierarchy = 'large-height' || 'medium_large-height'
-      const widthHierarchy = 'large-width' || 'medium_large-width'
-      imgSrc = imageData.sizes[sizesHierarchy] || ''
-      imgHeight = imageData.sizes[heightHierarchy] || 0
-      imgWidth = imageData.sizes[widthHierarchy] || 0
+      if (imageData.sizes.large) {
+        imgSrc = imageData.sizes.large
+        imgHeight = imageData.sizes['large-height'] || 0
+        imgWidth = imageData.sizes['large-width'] || 0
+      } else if (imageData.sizes.medium_large) {
+        imgSrc = imageData.sizes.medium_large
+        imgHeight = imageData.sizes['medium_large-height'] || 0
+        imgWidth = imageData.sizes['medium_large-width'] || 0
+      }
     }
     if (!imgSrc) imgSrc = imageData.source_url
   }
